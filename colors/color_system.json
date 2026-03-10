@@ -1,0 +1,97 @@
+{
+  "name": "Gain Color System",
+  "version": "1.0",
+  "foundations": {
+    "palette": {
+      "primary": "#F59E0B",
+      "secondary": "#E9D8C5",
+      "accent": "#FF7A00",
+      "neutralLight": "#F6F2EE",
+      "neutralDark": "#0B0602"
+    }
+  },
+  "scales": {
+    "primary": {
+      "0": "#FFF9ED",
+      "50": "#FFF3DB",
+      "100": "#FFE7B7",
+      "200": "#FFD98A",
+      "300": "#FFCA5C",
+      "400": "#FFB633",
+      "500": "#F59E0B",
+      "600": "#D78407",
+      "700": "#A86405",
+      "800": "#704303",
+      "900": "#3A2201",
+      "950": "#211200"
+    },
+    "secondary": {
+      "0": "#FDFBF8",
+      "50": "#F8F1E9",
+      "100": "#F1E5D8",
+      "200": "#E9D8C5",
+      "300": "#D8C3AE",
+      "400": "#C4AE97",
+      "500": "#AF987E",
+      "600": "#8E7961",
+      "700": "#6D5C48",
+      "800": "#4C4032",
+      "900": "#302821",
+      "950": "#1D1814"
+    },
+    "accent": {
+      "0": "#FFF6F0",
+      "50": "#FFEBDD",
+      "100": "#FFD5BB",
+      "200": "#FFBB90",
+      "300": "#FFA066",
+      "400": "#FF8A33",
+      "500": "#FF7A00",
+      "600": "#D96600",
+      "700": "#A84F00",
+      "800": "#703400",
+      "900": "#381900",
+      "950": "#1F0E00"
+    },
+    "neutral": {
+      "0": "#F6F2EE",
+      "50": "#EAE6E2",
+      "100": "#D4CEC7",
+      "200": "#B8B1A9",
+      "300": "#9A938B",
+      "400": "#7B746C",
+      "500": "#5C554E",
+      "600": "#3E3832",
+      "700": "#211B16",
+      "800": "#140A04",
+      "900": "#0F0803",
+      "950": "#0B0602"
+    }
+  },
+  "semanticPreview": {
+    "light": {
+      "background": "secondary.0",
+      "surface": "secondary.50",
+      "surfaceAlt": "secondary.100",
+      "border": "secondary.300",
+      "textPrimary": "neutral.950",
+      "textSecondary": "neutral.600",
+      "brandPrimary": "primary.500",
+      "brandPrimaryHover": "primary.600",
+      "brandAccent": "accent.500",
+      "brandAccentHover": "accent.600"
+    },
+    "dark": {
+      "background": "neutral.950",
+      "surface": "neutral.800",
+      "surfaceAlt": "neutral.700",
+      "border": "neutral.700",
+      "textPrimary": "neutral.0",
+      "textSecondary": "neutral.300",
+      "brandPrimary": "primary.500",
+      "brandPrimaryHover": "primary.400",
+      "brandAccent": "accent.500",
+      "brandAccentHover": "accent.400"
+    }
+  }
+}
