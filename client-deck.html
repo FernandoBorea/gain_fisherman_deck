@@ -1,0 +1,2194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gain Client Deck</title>
+    <style>
+      :root {
+        --primary-500: #f59e0b;
+        --primary-700: #a86405;
+        --accent-500: #ff7a00;
+        --accent-700: #a84f00;
+        --secondary-0: #fdfbf8;
+        --secondary-50: #f8f1e9;
+        --secondary-100: #f1e5d8;
+        --secondary-200: #e9d8c5;
+        --secondary-300: #d8c3ae;
+        --neutral-0: #f6f2ee;
+        --neutral-200: #b8b1a9;
+        --neutral-500: #5c554e;
+        --neutral-700: #211b16;
+        --neutral-900: #0f0803;
+        --neutral-950: #0b0602;
+        --shadow-strong: 0 24px 64px rgba(17, 10, 3, 0.08);
+        --shadow-soft: 0 8px 24px rgba(17, 10, 3, 0.04);
+        --radius-xl: 34px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --font-display: Georgia, "Times New Roman", serif;
+        --font-body: "Trebuchet MS", "Gill Sans", "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 183, 51, 0.14),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(255, 122, 0, 0.1),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #fdfbf8 0%, #f6f2ee 100%);
+        color: var(--neutral-900);
+        overflow-x: hidden;
+      }
+
+      .shell {
+        min-height: 100vh;
+        padding: 28px 28px 56px;
+      }
+
+      .home-nav {
+        position: fixed;
+        left: 22px;
+        top: 22px;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: rgba(248, 241, 233, 0.82);
+        border: 1px solid rgba(92, 85, 78, 0.18);
+        border-radius: 50%;
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow-soft);
+        color: var(--neutral-950);
+        text-decoration: none;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+      }
+
+      .home-nav:hover,
+      .home-nav:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-soft);
+        outline: none;
+        color: var(--neutral-950);
+      }
+
+      .home-nav svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .controls {
+        position: fixed;
+        right: 22px;
+        top: 22px;
+        z-index: 20;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 10px;
+        background: rgba(248, 241, 233, 0.82);
+        border: 1px solid rgba(92, 85, 78, 0.18);
+        border-radius: 999px;
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .control-button {
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font: inherit;
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--neutral-950);
+        background: linear-gradient(135deg, #ffe7b7 0%, #ffca5c 100%);
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          box-shadow 160ms ease;
+        box-shadow: inset 0 0 0 1px rgba(11, 6, 2, 0.08);
+      }
+
+      .control-button.secondary {
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .control-button:hover,
+      .control-button:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-soft);
+        outline: none;
+      }
+
+      .progress {
+        position: fixed;
+        left: 22px;
+        top: 50%;
+        z-index: 20;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        background: rgba(248, 241, 233, 0.8);
+        border: 1px solid rgba(92, 85, 78, 0.18);
+        border-radius: 999px;
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .progress-dot {
+        width: 11px;
+        height: 11px;
+        border: 0;
+        border-radius: 999px;
+        background: rgba(92, 85, 78, 0.3);
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          background-color 160ms ease;
+      }
+
+      .progress-dot:hover,
+      .progress-dot:focus-visible {
+        transform: scale(1.18);
+        outline: none;
+      }
+
+      .progress-dot.active {
+        background: linear-gradient(
+          135deg,
+          var(--primary-500),
+          var(--accent-500)
+        );
+        transform: scale(1.2);
+      }
+
+      .deck {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
+        margin: 0 auto;
+      }
+
+      .slide {
+        position: relative;
+        width: min(1500px, calc(100vw - 128px));
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-strong);
+        scroll-snap-align: center;
+        isolation: isolate;
+        display: grid;
+        padding: 56px 64px;
+      }
+
+      .slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.08), transparent 32%),
+          radial-gradient(
+            circle at 88% 16%,
+            rgba(255, 122, 0, 0.12),
+            transparent 19%
+          ),
+          radial-gradient(
+            circle at 14% 100%,
+            rgba(245, 158, 11, 0.1),
+            transparent 28%
+          );
+        z-index: -1;
+      }
+
+      .theme-dark {
+        background:
+          linear-gradient(135deg, rgba(245, 158, 11, 0.11), transparent 44%),
+          linear-gradient(180deg, #140a04 0%, #0b0602 100%);
+        color: var(--neutral-0);
+      }
+
+      .theme-dark::before {
+        background:
+          radial-gradient(
+            circle at 15% 18%,
+            rgba(245, 158, 11, 0.2),
+            transparent 26%
+          ),
+          radial-gradient(
+            circle at 100% 0%,
+            rgba(255, 122, 0, 0.16),
+            transparent 24%
+          ),
+          linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 45%);
+      }
+
+      .theme-light {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 250, 240, 0.92),
+            rgba(241, 229, 216, 0.88)
+          ),
+          linear-gradient(180deg, #fdfbf8 0%, #f6f2ee 100%);
+        color: var(--neutral-900);
+      }
+
+      .theme-amber {
+        background:
+          linear-gradient(
+            160deg,
+            rgba(255, 244, 224, 0.96),
+            rgba(255, 235, 221, 0.94)
+          ),
+          linear-gradient(180deg, #fff9ed 0%, #fdfbf8 100%);
+        color: var(--neutral-900);
+      }
+
+      .slide-grid {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .slide-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .brand-lockup {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand-lockup img {
+        height: 28px;
+        width: auto;
+        object-fit: contain;
+      }
+      .slide-logo {
+        height: 28px;
+        width: auto;
+        object-fit: contain;
+      }
+      .theme-light .logo-dark,
+      .theme-amber .logo-dark {
+        display: none;
+      }
+      .theme-dark .logo-light {
+        display: none;
+      }
+      .slide-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 32px;
+      }
+      .slide-content-header {
+        margin-bottom: 32px;
+      }
+
+      .eyebrow {
+        display: block;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.77rem;
+        font-weight: 800;
+        color: var(--accent-500);
+      }
+
+      .theme-dark .eyebrow {
+        color: #ffca5c;
+      }
+
+      .date-stamp,
+      .slide-index {
+        font-size: 0.86rem;
+        color: rgba(92, 85, 78, 0.88);
+      }
+
+      .theme-dark .date-stamp,
+      .theme-dark .slide-index {
+        color: rgba(246, 242, 238, 0.74);
+      }
+
+      .hero-title,
+      .slide-title {
+        margin: 0;
+        font-family: var(--font-display);
+        line-height: 0.94;
+        letter-spacing: -0.04em;
+      }
+
+      .hero-title {
+        max-width: 11ch;
+        font-size: clamp(3.3rem, 5.5vw, 5.9rem);
+      }
+
+      .slide-title {
+        max-width: 18ch;
+        margin-top: 8px;
+        font-size: clamp(2.1rem, 3.7vw, 4.1rem);
+      }
+
+      .hero-subtitle,
+      .slide-subtitle {
+        margin: 0;
+        max-width: 68ch;
+        line-height: 1.35;
+        font-size: clamp(1rem, 1.58vw, 1.42rem);
+        color: rgba(92, 85, 78, 0.96);
+      }
+
+      .theme-dark .hero-subtitle,
+      .theme-dark .slide-subtitle {
+        color: rgba(246, 242, 238, 0.82);
+      }
+
+      .pills,
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .pill,
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        border: 1px solid rgba(92, 85, 78, 0.12);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--neutral-950);
+      }
+
+      .theme-dark .pill,
+      .theme-dark .tag {
+        background: rgba(246, 242, 238, 0.08);
+        border-color: rgba(246, 242, 238, 0.12);
+        color: var(--neutral-0);
+      }
+
+      .accent-card,
+      .panel {
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(92, 85, 78, 0.08);
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .point-card,
+      .timeline-step {
+        background: transparent;
+      }
+      .metric-card,
+      .quote-card {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+
+      .theme-dark .accent-card,
+      .theme-dark .panel {
+        background: rgba(246, 242, 238, 0.04);
+        border-color: rgba(246, 242, 238, 0.08);
+      }
+      .theme-dark .point-card,
+      .theme-dark .timeline-step {
+        background: transparent;
+      }
+
+      .accent-card {
+        padding: 18px 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 202, 92, 0.26),
+          rgba(255, 235, 221, 0.72)
+        );
+      }
+
+      .theme-dark .accent-card {
+        background: linear-gradient(
+          135deg,
+          rgba(245, 158, 11, 0.18),
+          rgba(255, 122, 0, 0.08)
+        );
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .metric-grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px 24px;
+      }
+
+      .grid-1 {
+        display: grid;
+        gap: 24px;
+      }
+
+      .panel {
+        padding: 36px;
+      }
+      .point-card,
+      .metric-card,
+      .timeline-step {
+        padding: 0;
+      }
+      .quote-card {
+        padding: 0;
+      }
+
+      .point-card h3,
+      .timeline-step h3 {
+        margin: 0 0 12px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--primary-500);
+        font-size: 1.08rem;
+        line-height: 1.18;
+      }
+      .panel h3 {
+        margin: 0 0 8px;
+        font-size: 1.08rem;
+        line-height: 1.18;
+      }
+
+      .point-card p,
+      .panel p,
+      .timeline-step p,
+      .mini-list,
+      .metric-caption {
+        margin: 0;
+        line-height: 1.35;
+        color: rgba(92, 85, 78, 0.96);
+      }
+
+      .theme-dark .point-card p,
+      .theme-dark .panel p,
+      .theme-dark .timeline-step p,
+      .theme-dark .mini-list,
+      .theme-dark .metric-caption {
+        color: rgba(246, 242, 238, 0.78);
+      }
+
+      .metric-card {
+        display: grid;
+        gap: 6px;
+        align-content: start;
+      }
+
+      .metric-value {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        font-weight: 900;
+        color: var(--accent-700);
+      }
+
+      .theme-dark .metric-value {
+        color: #ffd98a;
+      }
+
+      .metric-label {
+        margin: 0;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 800;
+        color: rgba(92, 85, 78, 0.76);
+      }
+
+      .theme-dark .metric-label {
+        color: rgba(246, 242, 238, 0.64);
+      }
+
+      .quote-card {
+        display: grid;
+        gap: 24px;
+        align-content: center;
+        padding: 0;
+        background: transparent;
+        border-left: 4px solid var(--primary-500);
+        padding-left: 32px;
+      }
+
+      .quote-card blockquote {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.2vw, 3.2rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: var(--accent-700);
+      }
+      .theme-dark .quote-card blockquote {
+        color: #ffd98a;
+      }
+
+      .quote-card cite {
+        font-style: normal;
+        font-weight: 700;
+        color: rgba(92, 85, 78, 0.84);
+      }
+
+      .quote-card .source {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        color: rgba(92, 85, 78, 0.76);
+      }
+
+      .check-list,
+      .simple-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .check-list li,
+      .simple-list li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+        align-items: start;
+        line-height: 1.32;
+      }
+
+      .bullet {
+        width: 11px;
+        height: 11px;
+        border-radius: 999px;
+        margin-top: 0.35em;
+        background: linear-gradient(
+          135deg,
+          var(--primary-500),
+          var(--accent-500)
+        );
+        box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.13);
+      }
+
+      .theme-dark .bullet {
+        box-shadow: 0 0 0 5px rgba(255, 217, 138, 0.12);
+      }
+
+      .split-highlight {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 32px;
+        align-items: stretch;
+      }
+
+      .process-flow {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .flow-step {
+        position: relative;
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-left: 2px solid rgba(92, 85, 78, 0.2);
+        padding-left: 24px;
+      }
+
+      .theme-dark .flow-step {
+        background: transparent;
+        border-left-color: rgba(246, 242, 238, 0.2);
+      }
+
+      .flow-step::after {
+        content: ">";
+        position: absolute;
+        right: -13px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: rgba(92, 85, 78, 0.32);
+      }
+
+      .theme-dark .flow-step::after {
+        color: rgba(246, 242, 238, 0.26);
+      }
+
+      .flow-step:last-child::after {
+        display: none;
+      }
+
+      .flow-number {
+        margin: 0 0 12px;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-weight: 800;
+        color: var(--accent-500);
+      }
+
+      .flow-title {
+        margin: 0 0 8px;
+        font-size: 1.12rem;
+        line-height: 1.12;
+      }
+
+      .flow-copy {
+        margin: 0;
+        line-height: 1.34;
+        color: rgba(92, 85, 78, 0.9);
+      }
+
+      .theme-dark .flow-copy {
+        color: rgba(246, 242, 238, 0.76);
+      }
+
+      .ratio-strip,
+      .support-strip,
+      .cta-strip {
+        display: grid;
+        gap: 14px;
+        padding: 18px 20px;
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(92, 85, 78, 0.12);
+      }
+
+      .theme-dark .ratio-strip,
+      .theme-dark .support-strip,
+      .theme-dark .cta-strip {
+        background: rgba(246, 242, 238, 0.08);
+        border-color: rgba(246, 242, 238, 0.12);
+      }
+
+      .ratio-strip strong,
+      .support-strip strong,
+      .cta-strip strong {
+        display: block;
+        font-size: 1.05rem;
+        margin-bottom: 3px;
+      }
+
+      .economics-table {
+        display: grid;
+        gap: 12px;
+      }
+
+      .economics-row {
+        display: grid;
+        grid-template-columns: 1.1fr 0.22fr 1fr;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(92, 85, 78, 0.12);
+        font-size: 1.08rem;
+        font-weight: 700;
+        background: transparent;
+        border-radius: 0;
+      }
+      .economics-row:last-child {
+        border-bottom: none;
+      }
+
+      .theme-dark .economics-row {
+        background: transparent;
+        border-bottom-color: rgba(246, 242, 238, 0.12);
+      }
+
+      .arrow-cell {
+        text-align: center;
+        color: var(--accent-500);
+        font-size: 1.25rem;
+        font-weight: 900;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .timeline-step {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .timeline-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        font-weight: 900;
+        color: var(--neutral-950);
+        background: linear-gradient(135deg, #ffe7b7, #ffca5c);
+      }
+
+      .theme-dark .timeline-badge {
+        background: linear-gradient(135deg, #ffd98a, #ffb633);
+      }
+
+      .closing-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 32px;
+        align-items: stretch;
+      }
+
+      .contact-card {
+        display: grid;
+        gap: 12px;
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        background: rgba(246, 242, 238, 0.08);
+        border: 1px solid rgba(246, 242, 238, 0.12);
+      }
+
+      .contact-card p {
+        margin: 0;
+        line-height: 1.35;
+        color: rgba(246, 242, 238, 0.82);
+      }
+
+      .contact-value {
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: var(--neutral-0);
+      }
+
+      .footer-note {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        margin-top: auto;
+        font-size: 0.82rem;
+        color: rgba(92, 85, 78, 0.74);
+      }
+
+      .theme-dark .footer-note {
+        color: rgba(246, 242, 238, 0.58);
+      }
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 28px;
+        align-items: end;
+        height: 100%;
+      }
+
+      .hero-panel {
+        display: grid;
+        gap: 24px;
+        align-content: end;
+      }
+
+      .hero-side {
+        display: grid;
+        gap: 24px;
+        align-content: stretch;
+      }
+
+      .hero-side .panel {
+        min-height: 0;
+      }
+
+      .hero-side .panel strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.92rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent-500);
+      }
+
+      .theme-dark .hero-side .panel strong {
+        color: #ffd98a;
+      }
+
+      .hero-side .panel p {
+        font-size: 1.12rem;
+      }
+
+      .large-number {
+        font-size: clamp(2.5rem, 4vw, 4.4rem);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        font-weight: 900;
+        color: var(--accent-500);
+        margin: 0;
+      }
+
+      .theme-dark .large-number {
+        color: #ffd98a;
+      }
+
+      .muted {
+        color: rgba(92, 85, 78, 0.76);
+      }
+
+      .theme-dark .muted {
+        color: rgba(246, 242, 238, 0.66);
+      }
+
+      .wide {
+        max-width: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      @media (max-width: 1200px) {
+        .shell {
+          padding: 80px 18px 36px;
+        }
+
+        .slide {
+          width: calc(100vw - 36px);
+          aspect-ratio: auto;
+          padding: 30px 24px;
+        }
+
+        .slide-header,
+        .brand-lockup {
+          align-items: flex-start;
+        }
+
+        .slide-header {
+          flex-direction: column;
+        }
+
+        .grid-4,
+        .metric-grid,
+        .process-flow,
+        .timeline,
+        .grid-3,
+        .hero-layout,
+        .split-highlight,
+        .closing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .controls,
+        .progress,
+        .home-nav {
+          transform: none;
+        }
+
+        .home-nav {
+          left: 18px;
+          top: 18px;
+        }
+
+        .progress {
+          top: auto;
+          bottom: 18px;
+          left: 18px;
+          right: 18px;
+          flex-direction: row;
+          justify-content: center;
+        }
+
+        .controls {
+          right: 18px;
+          left: 18px;
+          justify-content: space-between;
+        }
+
+        .flow-step::after {
+          display: none;
+        }
+      }
+
+      @media print {
+        @page {
+          size: 16in 9in;
+          margin: 0;
+        }
+
+        html,
+        body {
+          width: 16in;
+          margin: 0;
+          padding: 0;
+          background: white;
+          overflow: visible;
+        }
+
+        .shell {
+          min-height: 0;
+          padding: 0;
+        }
+
+        .deck {
+          gap: 0;
+        }
+
+        .slide {
+          width: 16in;
+          height: 9in;
+          min-height: 0;
+          aspect-ratio: auto;
+          border-radius: 0;
+          margin: 0;
+          padding: 0.42in 0.48in;
+          box-shadow: none;
+          break-after: page;
+          page-break-after: always;
+        }
+
+        .slide:last-child {
+          break-after: auto;
+          page-break-after: auto;
+        }
+
+        .controls,
+        .progress,
+        .home-nav,
+        .no-print {
+          display: none !important;
+        }
+
+        * {
+          box-shadow: none !important;
+          text-shadow: none !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+        }
+
+        .slide::before,
+        .flow-step::after {
+          display: none !important;
+        }
+
+        .slide-title {
+          font-size: 2.65rem;
+        }
+
+        .hero-title {
+          font-size: 4rem;
+        }
+
+        .hero-subtitle,
+        .slide-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .metric-value {
+          font-size: 2rem;
+        }
+
+        .pdf-dense {
+          transform: scale(0.97);
+          transform-origin: top left;
+          width: calc(100% / 0.97);
+        }
+
+        /* Prevent grid collapsing in print */
+        .grid-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+        .grid-3 {
+          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+        .grid-4,
+        .process-flow {
+          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        }
+        .metric-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+        .hero-layout {
+          grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr) !important;
+        }
+        .split-highlight {
+          grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
+        }
+        .closing-grid {
+          grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr) !important;
+        }
+        .timeline {
+          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+
+        /* Simplify glassmorphism to solid colors for PDF performance */
+        .accent-card,
+        .panel,
+        .ratio-strip,
+        .support-strip,
+        .cta-strip,
+        .contact-card {
+          background: white !important;
+          border: 1px solid rgba(92, 85, 78, 0.2) !important;
+        }
+
+        .theme-dark .accent-card,
+        .theme-dark .panel,
+        .theme-dark .ratio-strip,
+        .theme-dark .support-strip,
+        .theme-dark .cta-strip,
+        .theme-dark .contact-card {
+          background: #140a04 !important;
+          border: 1px solid rgba(246, 242, 238, 0.2) !important;
+        }
+
+        .timeline-badge {
+          background: #ffe7b7 !important;
+        }
+        .theme-dark .timeline-badge {
+          background: #ffd98a !important;
+        }
+        .bullet {
+          background: var(--primary-500) !important;
+        }
+      }
+
+      .pdf-export-mode {
+        background: white !important;
+      }
+
+      .pdf-export-mode .slide::before,
+      .pdf-export-mode .controls,
+      .pdf-export-mode .progress,
+      .pdf-export-mode .home-nav {
+        display: none !important;
+      }
+
+      .pdf-export-mode .theme-dark {
+        background: #0b0602 !important;
+      }
+
+      .pdf-export-mode .theme-light {
+        background: #fdfbf8 !important;
+      }
+
+      .pdf-export-mode .theme-amber {
+        background: #fff9ed !important;
+      }
+
+      /* --- New Custom Layout Classes --- */
+      .step-flow-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 64px;
+        margin-bottom: 48px;
+        position: relative;
+        max-width: 800px;
+      }
+      .step-flow-line {
+        position: absolute;
+        top: 50%;
+        left: 40px;
+        right: 40px;
+        height: 0;
+        border-top: 3px dotted rgba(92, 85, 78, 0.3);
+        z-index: 0;
+        transform: translateY(-50%);
+      }
+      .theme-dark .step-flow-line {
+        border-top-color: rgba(246, 242, 238, 0.3);
+      }
+      .step-flow-item {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--secondary-0);
+        padding: 8px 24px 8px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(92, 85, 78, 0.2);
+        color: rgba(92, 85, 78, 0.6);
+        font-weight: 700;
+        transition: all 0.3s ease;
+      }
+      .theme-dark .step-flow-item {
+        background: var(--neutral-900);
+        border-color: rgba(246, 242, 238, 0.2);
+        color: rgba(246, 242, 238, 0.5);
+      }
+      .step-flow-item.active {
+        background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+        color: var(--neutral-950);
+        border-color: transparent;
+        box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+      }
+      .step-flow-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: rgba(92, 85, 78, 0.1);
+        border-radius: 50%;
+        font-size: 0.9rem;
+      }
+      .theme-dark .step-flow-number {
+        background: rgba(246, 242, 238, 0.1);
+      }
+      .step-flow-item.active .step-flow-number {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .strike-list li {
+        text-decoration: line-through;
+        opacity: 0.6;
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .strike-list li::before {
+        content: "✕";
+        color: #ef4444;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 900;
+        font-size: 1.2rem;
+      }
+      
+      .currency-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 48px 32px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(92, 85, 78, 0.15);
+        border-radius: var(--radius-lg);
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--neutral-900);
+        box-shadow: var(--shadow-soft);
+      }
+      .currency-card span {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--neutral-500);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .qr-widget {
+        background: white;
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 24px 48px rgba(17, 10, 3, 0.12);
+        border: 1px solid rgba(92, 85, 78, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        transform: rotate(-2deg);
+      }
+      .qr-placeholder {
+        width: 200px;
+        height: 200px;
+        background: #f8f1e9;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed rgba(92, 85, 78, 0.2);
+        color: var(--neutral-500);
+        font-weight: 600;
+      }
+
+      .big-stat-card {
+        padding: 32px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(92, 85, 78, 0.1);
+        border-radius: var(--radius-lg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .big-stat-card .stat {
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--accent-700);
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      .big-stat-card .label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--neutral-700);
+      }
+      /* ---------------------------------- */
+    </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <a href="index.html" class="home-nav no-print" aria-label="Back to decks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </a>
+    <div class="controls no-print">
+      <button class="control-button secondary" type="button" id="prev-slide">
+        Previous
+      </button>
+      <button class="control-button secondary" type="button" id="next-slide">
+        Next
+      </button>
+      <!-- Print / Save PDF — restore when ready
+      <button class="control-button" type="button" id="print-deck">
+        Print / Save PDF
+      </button>
+      -->
+    </div>
+
+    <div
+      class="progress no-print"
+      id="progress-nav"
+      aria-label="Slide progress"
+    ></div>
+
+    <div class="shell">
+      <main class="deck" id="deck">
+        <!-- Slide 1: Cover -->
+        <section class="slide theme-dark" id="slide-1" data-title="Cover">
+          <div class="slide-grid" style="display: flex; flex-direction: column">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Gain Inc.</div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex-grow: 1; gap: 64px; text-align: center; margin-bottom: 4vh;">
+              <h1 class="hero-title" style="max-width: 18ch; margin: 0 auto;">
+                Grow Your Investment with <span style="color: #ffca5c;">Intelligent Automation</span>
+              </h1>
+              
+              <div class="grid-3" style="gap: 24px; max-width: 1000px; width: 100%;">
+                <div class="accent-card" style="padding: 32px 24px; font-size: 1.25rem; font-weight: 600; display: flex; align-items: center; justify-content: center; text-align: center;">
+                  You keep your account.
+                </div>
+                <div class="accent-card" style="padding: 32px 24px; font-size: 1.25rem; font-weight: 600; display: flex; align-items: center; justify-content: center; text-align: center;">
+                  We manage the trading.
+                </div>
+                <div class="accent-card" style="padding: 32px 24px; font-size: 1.25rem; font-weight: 600; display: flex; align-items: center; justify-content: center; text-align: center;">
+                  You watch everything in real time.
+                </div>
+              </div>
+            </div>
+
+            <div class="footer-note" style="margin-top: auto">
+              <div style="font-size: 1.05rem; color: var(--neutral-0)">
+                <strong>Robert P. McDonell</strong>
+                <span style="opacity: 0.7; font-weight: normal">&mdash; Founder &amp; CEO, Gain Inc.</span>
+              </div>
+              <span>1 / 15</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 2: The Problem -->
+        <section class="slide theme-light" id="slide-2" data-title="The Problem">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">2 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">The Problem</div>
+              <h2 class="slide-title">
+                Manual trading is stressful. Markets move fast.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <h3 style="font-size: 1.5rem; margin: 0; color: var(--neutral-700);">Many people want to invest, but:</h3>
+              
+              <div class="grid-4" style="gap: 24px;">
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="help-circle" style="color: var(--accent-500); width: 32px; height: 32px;"></i>
+                  <div>
+                    <h4 style="font-size: 1.2rem; margin: 0 0 12px; color: var(--accent-700);">Uncertainty</h4>
+                    <p style="font-size: 1.1rem; margin: 0;">They don’t know what to trade.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="clock" style="color: var(--accent-500); width: 32px; height: 32px;"></i>
+                  <div>
+                    <h4 style="font-size: 1.2rem; margin: 0 0 12px; color: var(--accent-700);">Time Limits</h4>
+                    <p style="font-size: 1.1rem; margin: 0;">They don’t have time to follow markets.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="brain-circuit" style="color: var(--accent-500); width: 32px; height: 32px;"></i>
+                  <div>
+                    <h4 style="font-size: 1.2rem; margin: 0 0 12px; color: var(--accent-700);">Emotions</h4>
+                    <p style="font-size: 1.1rem; margin: 0;">Emotions lead to bad decisions.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="network" style="color: var(--accent-500); width: 32px; height: 32px;"></i>
+                  <div>
+                    <h4 style="font-size: 1.2rem; margin: 0 0 12px; color: var(--accent-700);">Complexity</h4>
+                    <p style="font-size: 1.1rem; margin: 0;">Markets feel complex and overwhelming.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 24px 32px; text-align: center; margin-top: 16px;">
+                <p style="margin: 0; font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; letter-spacing: -0.02em;">
+                  Most investors either hesitate — or make costly mistakes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 3: The Solution -->
+        <section class="slide theme-amber" id="slide-3" data-title="The Solution">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">3 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">The Solution</div>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p class="slide-subtitle wide" style="font-size: 1.4rem; font-weight: 600; color: var(--accent-700);">
+                Gain connects your brokerage account to automated trading software.
+              </p>
+              
+              <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5rem); line-height: 1; letter-spacing: -0.04em; max-width: 14ch;">
+                Think of it as a professional autopilot for investing.
+              </h2>
+
+              <div class="grid-4" style="gap: 24px; margin-top: 24px;">
+                <div>
+                  <strong style="display: block; font-size: 1.2rem; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 3px solid var(--primary-500);">Trades 24/7</strong>
+                  <p style="margin: 0; font-size: 1.05rem; opacity: 0.8;">Never sleeps or misses an opportunity.</p>
+                </div>
+                <div>
+                  <strong style="display: block; font-size: 1.2rem; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 3px solid var(--primary-500);">Strict Risk Rules</strong>
+                  <p style="margin: 0; font-size: 1.05rem; opacity: 0.8;">Capital preservation is built into the code.</p>
+                </div>
+                <div>
+                  <strong style="display: block; font-size: 1.2rem; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 3px solid var(--primary-500);">No Emotion</strong>
+                  <p style="margin: 0; font-size: 1.05rem; opacity: 0.8;">Removes panic and greed from the equation.</p>
+                </div>
+                <div>
+                  <strong style="display: block; font-size: 1.2rem; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 3px solid var(--primary-500);">Consistent</strong>
+                  <p style="margin: 0; font-size: 1.05rem; opacity: 0.8;">Executes the exact same way every time.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 4: Why You Need a Broker -->
+        <section class="slide theme-light" id="slide-4" data-title="Why You Need a Broker">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">4 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Infrastructure</div>
+              <h2 class="slide-title">
+                Before any trading can happen, you need a brokerage account.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="split-highlight" style="gap: 64px; align-items: center">
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <p style="font-size: 1.8rem; font-family: var(--font-display); line-height: 1.2; color: var(--accent-700); margin: 0;">
+                    A broker is like your investment bank account.
+                  </p>
+                  <p style="font-size: 1.25rem; line-height: 1.4; font-weight: 600; margin: 0;">
+                    Gain does not replace the broker.<br/>
+                    Gain operates <em>inside</em> your brokerage account.
+                  </p>
+                </div>
+
+                <div class="grid-2" style="gap: 24px;">
+                  <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                    <i data-lucide="shield-check" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                    <div>
+                      <h4 style="font-size: 1.15rem; margin: 0 0 8px;">Holds your money</h4>
+                      <p style="font-size: 1rem; margin: 0; opacity: 0.8;">Secure custody of funds.</p>
+                    </div>
+                  </article>
+                  <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                    <i data-lucide="activity" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                    <div>
+                      <h4 style="font-size: 1.15rem; margin: 0 0 8px;">Executes trades</h4>
+                      <p style="font-size: 1rem; margin: 0; opacity: 0.8;">The actual market connection.</p>
+                    </div>
+                  </article>
+                  <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                    <i data-lucide="arrow-left-right" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                    <div>
+                      <h4 style="font-size: 1.15rem; margin: 0 0 8px;">Processes transfers</h4>
+                      <p style="font-size: 1rem; margin: 0; opacity: 0.8;">Handles deposits & withdrawals.</p>
+                    </div>
+                  </article>
+                  <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                    <i data-lucide="file-text" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                    <div>
+                      <h4 style="font-size: 1.15rem; margin: 0 0 8px;">Keeps records</h4>
+                      <p style="font-size: 1rem; margin: 0; opacity: 0.8;">Official statements & tracking.</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 5: The Broker's Role -->
+        <section class="slide theme-dark" id="slide-5" data-title="The Broker's Role">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">5 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Security</div>
+              <h2 class="slide-title">
+                Your account is with a regulated broker.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-2" style="align-items: stretch; gap: 48px">
+                <article class="panel" style="display: flex; flex-direction: column; padding: 42px; border-top: 4px solid var(--primary-500);">
+                  <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: var(--neutral-0);">Your Control</h3>
+                  <ul class="check-list" style="gap: 20px; font-size: 1.2rem">
+                    <li><span class="bullet" style="margin-top: 0.45em"></span><span>You deposit directly to the broker</span></li>
+                    <li><span class="bullet" style="margin-top: 0.45em"></span><span>You withdraw directly from the broker</span></li>
+                    <li><span class="bullet" style="margin-top: 0.45em"></span><span>Your account is entirely in your name</span></li>
+                  </ul>
+                </article>
+
+                <article class="panel" style="display: flex; flex-direction: column; padding: 42px; border-top: 4px solid var(--neutral-500);">
+                  <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: var(--neutral-0);">Gain's Limits</h3>
+                  <ul class="check-list" style="gap: 20px; font-size: 1.2rem">
+                    <li><span class="bullet" style="margin-top: 0.45em; background: var(--neutral-500); box-shadow: none;"></span><span>Gain never receives your money</span></li>
+                    <li><span class="bullet" style="margin-top: 0.45em; background: var(--neutral-500); box-shadow: none;"></span><span>Gain cannot withdraw funds</span></li>
+                    <li><span class="bullet" style="margin-top: 0.45em; background: var(--neutral-500); box-shadow: none;"></span><span>Gain only places trades</span></li>
+                  </ul>
+                </article>
+              </div>
+
+              <div style="text-align: center; font-size: 1.5rem; font-weight: 700; color: #ffd98a;">
+                You remain in control. The broker safeguards your capital.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 6: How It Works - Step 1 -->
+        <section class="slide theme-light" id="slide-6" data-title="How It Works: You">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">6 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">How It Works</div>
+              <h2 class="slide-title">
+                Step 1 — You
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+              
+              <div class="step-flow-container" style="margin-left: auto; margin-right: auto;">
+                <div class="step-flow-line"></div>
+                <div class="step-flow-item active">
+                  <div class="step-flow-number">1</div> You
+                </div>
+                <div class="step-flow-item">
+                  <div class="step-flow-number">2</div> Broker
+                </div>
+                <div class="step-flow-item">
+                  <div class="step-flow-number">3</div> Gain
+                </div>
+              </div>
+
+              <div class="grid-3" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <div style="margin-bottom: 20px;"><i data-lucide="file-signature" style="color: var(--primary-500); width: 48px; height: 48px;"></i></div>
+                  <h3 style="font-size: 1.3rem;">Open Account</h3>
+                  <p style="font-size: 1.1rem;">Open your personal brokerage account.</p>
+                </article>
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <div style="margin-bottom: 20px;"><i data-lucide="landmark" style="color: var(--primary-500); width: 48px; height: 48px;"></i></div>
+                  <h3 style="font-size: 1.3rem;">Deposit</h3>
+                  <p style="font-size: 1.1rem;">Deposit funds directly to the broker.</p>
+                </article>
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <div style="margin-bottom: 20px;"><i data-lucide="shield-check" style="color: var(--primary-500); width: 48px; height: 48px;"></i></div>
+                  <h3 style="font-size: 1.3rem;">Ownership</h3>
+                  <p style="font-size: 1.1rem;">The account remains strictly in your name.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 7: How It Works - Step 2 -->
+        <section class="slide theme-amber" id="slide-7" data-title="How It Works: Broker">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">7 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">How It Works</div>
+              <h2 class="slide-title">
+                Step 2 — Broker
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+              
+              <div class="step-flow-container" style="margin-left: auto; margin-right: auto;">
+                <div class="step-flow-line"></div>
+                <div class="step-flow-item">
+                  <div class="step-flow-number">1</div> You
+                </div>
+                <div class="step-flow-item active">
+                  <div class="step-flow-number">2</div> Broker
+                </div>
+                <div class="step-flow-item">
+                  <div class="step-flow-number">3</div> Gain
+                </div>
+              </div>
+
+              <div class="grid-4" style="gap: 24px;">
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 16px;">
+                  <i data-lucide="lock" style="color: var(--primary-500); width: 36px; height: 36px;"></i>
+                  <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Holds Funds</h3>
+                    <p style="font-size: 1.05rem;">Holds your funds securely in segregated accounts.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 16px;">
+                  <i data-lucide="zap" style="color: var(--primary-500); width: 36px; height: 36px;"></i>
+                  <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Executes</h3>
+                    <p style="font-size: 1.05rem;">Executes all trades in the live market.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 16px;">
+                  <i data-lucide="refresh-cw" style="color: var(--primary-500); width: 36px; height: 36px;"></i>
+                  <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Processes</h3>
+                    <p style="font-size: 1.05rem;">Processes all your deposits & withdrawals.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 16px;">
+                  <i data-lucide="bar-chart-2" style="color: var(--primary-500); width: 36px; height: 36px;"></i>
+                  <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Reports</h3>
+                    <p style="font-size: 1.05rem;">Provides official reporting and statements.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 8: How It Works - Step 3 -->
+        <section class="slide theme-dark" id="slide-8" data-title="How It Works: Gain">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">8 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">How It Works</div>
+              <h2 class="slide-title">
+                Step 3 — Gain
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+              
+              <div class="step-flow-container" style="margin-left: auto; margin-right: auto;">
+                <div class="step-flow-line"></div>
+                <div class="step-flow-item">
+                  <div class="step-flow-number">1</div> You
+                </div>
+                <div class="step-flow-item">
+                  <div class="step-flow-number">2</div> Broker
+                </div>
+                <div class="step-flow-item active">
+                  <div class="step-flow-number">3</div> Gain
+                </div>
+              </div>
+
+              <div class="split-highlight" style="gap: 64px; align-items: center">
+                <div class="grid-2" style="gap: 24px;">
+                  <article class="panel" style="padding: 32px;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Connects</h3>
+                    <p style="font-size: 1.05rem;">Connects via trading authorization (LPOA).</p>
+                  </article>
+                  <article class="panel" style="padding: 32px;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Trades</h3>
+                    <p style="font-size: 1.05rem;">Places trades only, based on the strategy.</p>
+                  </article>
+                  <article class="panel" style="padding: 32px;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">No Withdrawals</h3>
+                    <p style="font-size: 1.05rem;">Cannot withdraw or transfer your funds.</p>
+                  </article>
+                  <article class="panel" style="padding: 32px;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 12px;">No Custody</h3>
+                    <p style="font-size: 1.05rem;">Does not hold custody of your capital.</p>
+                  </article>
+                </div>
+
+                <div class="accent-card" style="padding: 42px; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                  <p style="margin: 0; font-family: var(--font-display); font-size: clamp(2rem, 3vw, 3rem); line-height: 1.1; letter-spacing: -0.03em;">
+                    You control the capital.<br/><br/>
+                    Gain controls the strategy.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 9: Regulation & Safety -->
+        <section class="slide theme-light" id="slide-9" data-title="Regulation & Safety">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">9 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Regulation & Safety</div>
+              <h2 class="slide-title">
+                Regulated brokers operate under financial authorities.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-4" style="gap: 24px;">
+                <article class="panel" style="padding: 32px; border-top: 3px solid var(--primary-500);">
+                  <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Segregated Funds</h3>
+                  <p style="font-size: 1.05rem;">Client funds are kept separate from company operations.</p>
+                </article>
+                <article class="panel" style="padding: 32px; border-top: 3px solid var(--primary-500);">
+                  <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Strict Compliance</h3>
+                  <p style="font-size: 1.05rem;">Brokers must follow rigid financial regulations.</p>
+                </article>
+                <article class="panel" style="padding: 32px; border-top: 3px solid var(--primary-500);">
+                  <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Active Oversight</h3>
+                  <p style="font-size: 1.05rem;">Regulatory bodies actively monitor operations.</p>
+                </article>
+                <article class="panel" style="padding: 32px; border-top: 3px solid var(--primary-500);">
+                  <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Dispute Resolution</h3>
+                  <p style="font-size: 1.05rem;">Clear paths exist to escalate any issues.</p>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 24px; text-align: center; font-size: 1.25rem; font-weight: 700;">
+                Gain does not hold custody. You maintain ownership. We provide the trading technology.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 10: Real Performance -->
+        <section class="slide theme-amber" id="slide-10" data-title="Real Performance">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">10 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Real Performance</div>
+              <h2 class="slide-title">
+                Gain has been trading live since 2020.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-2" style="gap: 32px;">
+                <div class="big-stat-card">
+                  <div class="stat">5+ Years</div>
+                  <div class="label">of live capital deployment</div>
+                </div>
+                <div class="big-stat-card">
+                  <div class="stat">100%</div>
+                  <div class="label">Independently tracked performance</div>
+                </div>
+                <div class="big-stat-card">
+                  <div class="stat">+133%</div>
+                  <div class="label">Example: 2025 net return</div>
+                </div>
+                <div class="big-stat-card">
+                  <div class="stat">Real Capital</div>
+                  <div class="label">This is not backtesting. Real history.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 11: Full Transparency -->
+        <section class="slide theme-light" id="slide-11" data-title="Full Transparency">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">11 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Full Transparency</div>
+              <h2 class="slide-title">
+                You can monitor everything in real time.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p class="slide-subtitle wide" style="font-size: 1.3rem">
+                Nothing is hidden. Scan the QR code to see:
+              </p>
+
+              <div class="split-highlight" style="align-items: center; gap: 64px;">
+                <div class="grid-2" style="gap: 24px;">
+                  <article class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                    <i data-lucide="wallet" style="color: var(--primary-500); width: 28px; height: 28px;"></i>
+                    <span style="font-size: 1.15rem; font-weight: 600;">Account balance</span>
+                  </article>
+                  <article class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                    <i data-lucide="trending-up" style="color: var(--primary-500); width: 28px; height: 28px;"></i>
+                    <span style="font-size: 1.15rem; font-weight: 600;">Every trade</span>
+                  </article>
+                  <article class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                    <i data-lucide="scale" style="color: var(--primary-500); width: 28px; height: 28px;"></i>
+                    <span style="font-size: 1.15rem; font-weight: 600;">Risk levels</span>
+                  </article>
+                  <article class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                    <i data-lucide="trending-down" style="color: var(--primary-500); width: 28px; height: 28px;"></i>
+                    <span style="font-size: 1.15rem; font-weight: 600;">Drawdowns</span>
+                  </article>
+                  <article class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px; grid-column: span 2;">
+                    <i data-lucide="bar-chart-2" style="color: var(--primary-500); width: 28px; height: 28px;"></i>
+                    <span style="font-size: 1.15rem; font-weight: 600;">Full performance history</span>
+                  </article>
+                </div>
+
+                <div style="display: flex; justify-content: center;">
+                  <div class="qr-widget">
+                    <div class="qr-placeholder">
+                      [QR Code Placeholder]
+                    </div>
+                    <div style="text-align: center;">
+                      <p style="margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--neutral-700);">Myfxbook Tracking</p>
+                      <a href="https://www.myfxbook.com/members/Gain_Enterprises/usd-account-by-gain-enterprises/11818420" target="_blank" style="font-size: 0.75rem; color: var(--accent-500); text-decoration: none;">View Live Account →</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 12: Simple Fee Alignment -->
+        <section class="slide theme-dark" id="slide-12" data-title="Simple Fee Alignment">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">12 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Fee Alignment</div>
+              <h2 class="slide-title">
+                Gain only earns when you profit.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px;">
+              <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; max-width: 1000px; width: 100%; align-items: stretch;">
+                
+                <div style="display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x-circle" style="color: #ef4444; width: 28px; height: 28px; flex-shrink: 0;"></i>
+                    <span style="font-size: 1.25rem; font-weight: 600; color: rgba(246, 242, 238, 0.6); text-decoration: line-through;">No upfront fees</span>
+                  </div>
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x-circle" style="color: #ef4444; width: 28px; height: 28px; flex-shrink: 0;"></i>
+                    <span style="font-size: 1.25rem; font-weight: 600; color: rgba(246, 242, 238, 0.6); text-decoration: line-through;">No management fees</span>
+                  </div>
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x-circle" style="color: #ef4444; width: 28px; height: 28px; flex-shrink: 0;"></i>
+                    <span style="font-size: 1.25rem; font-weight: 600; color: rgba(246, 242, 238, 0.6); text-decoration: line-through;">No lockups</span>
+                  </div>
+                </div>
+
+                <div class="accent-card" style="padding: 48px; display: flex; flex-direction: column; justify-content: center; text-align: center; border: 2px solid rgba(245, 158, 11, 0.3);">
+                  <i data-lucide="check-circle-2" style="color: var(--primary-500); width: 48px; height: 48px; margin: 0 auto 24px;"></i>
+                  <div style="font-size: 5.5rem; font-weight: 900; line-height: 1; color: var(--accent-500); margin-bottom: 16px; letter-spacing: -0.04em;">25%</div>
+                  <p style="margin: 0; font-size: 1.4rem; font-weight: 700; color: var(--neutral-0);">Performance fee on net profits</p>
+                  <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(246, 242, 238, 0.15);">
+                    <p style="margin: 0; font-size: 1.15rem; color: rgba(246, 242, 238, 0.85); line-height: 1.4;">
+                      If you don’t make money → Gain earns nothing.<br/><strong>We succeed together.</strong>
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 13: Getting Started -->
+        <section class="slide theme-amber" id="slide-13" data-title="Getting Started">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">13 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Getting Started</div>
+              <h2 class="slide-title">
+                Ready to begin?
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p class="slide-subtitle wide" style="font-size: 1.4rem; text-align: center;">
+                Choose your account currency. All accounts receive the same strategy.
+              </p>
+
+              <div class="grid-3" style="gap: 32px; max-width: 900px; margin: 0 auto; width: 100%;">
+                <div class="currency-card" style="position: relative; overflow: hidden; padding: 42px 24px; text-align: center; justify-content: flex-start; gap: 12px;">
+                  <i data-lucide="dollar-sign" style="position: absolute; top: -20px; right: -20px; width: 140px; height: 140px; opacity: 0.04; color: var(--neutral-900);"></i>
+                  <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(245, 158, 11, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                    <i data-lucide="dollar-sign" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                  </div>
+                  <div style="font-size: 2.2rem; font-weight: 900; color: var(--neutral-900); line-height: 1;">USD</div>
+                  <div style="font-size: 1.1rem; color: var(--neutral-500); font-weight: 600;">US Dollar</div>
+                  <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(92,85,78,0.1); width: 100%; font-size: 0.95rem; color: var(--neutral-500); font-weight: 500;">
+                    Standard Strategy
+                  </div>
+                </div>
+                <div class="currency-card" style="position: relative; overflow: hidden; padding: 42px 24px; text-align: center; justify-content: flex-start; gap: 12px;">
+                  <i data-lucide="euro" style="position: absolute; top: -20px; right: -20px; width: 140px; height: 140px; opacity: 0.04; color: var(--neutral-900);"></i>
+                  <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(245, 158, 11, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                    <i data-lucide="euro" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                  </div>
+                  <div style="font-size: 2.2rem; font-weight: 900; color: var(--neutral-900); line-height: 1;">EUR</div>
+                  <div style="font-size: 1.1rem; color: var(--neutral-500); font-weight: 600;">Euro</div>
+                  <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(92,85,78,0.1); width: 100%; font-size: 0.95rem; color: var(--neutral-500); font-weight: 500;">
+                    Standard Strategy
+                  </div>
+                </div>
+                <div class="currency-card" style="position: relative; overflow: hidden; padding: 42px 24px; text-align: center; justify-content: flex-start; gap: 12px;">
+                  <i data-lucide="coins" style="position: absolute; top: -20px; right: -20px; width: 140px; height: 140px; opacity: 0.04; color: var(--neutral-900);"></i>
+                  <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(245, 158, 11, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                    <i data-lucide="coins" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                  </div>
+                  <div style="font-size: 2.2rem; font-weight: 900; color: var(--neutral-900); line-height: 1;">CHF</div>
+                  <div style="font-size: 1.1rem; color: var(--neutral-500); font-weight: 600;">Swiss Franc</div>
+                  <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(92,85,78,0.1); width: 100%; font-size: 0.95rem; color: var(--neutral-500); font-weight: 500;">
+                    Standard Strategy
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 14: Key Reminders -->
+        <section class="slide theme-light" id="slide-14" data-title="Key Reminders">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">14 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Key Reminders</div>
+              <h2 class="slide-title">
+                Start with an amount you feel comfortable with.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-3" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; border-top: 4px solid var(--primary-500); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;">
+                  <div style="width: 64px; height: 64px; background: rgba(245, 158, 11, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                    <i data-lucide="sliders" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                  </div>
+                  <h3 style="font-size: 1.4rem; margin: 0;">Full Control</h3>
+                  <p style="font-size: 1.15rem; margin: 0;">You keep full control of your account at all times.</p>
+                </article>
+                <article class="panel" style="padding: 42px; border-top: 4px solid var(--primary-500); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;">
+                  <div style="width: 64px; height: 64px; background: rgba(245, 158, 11, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                    <i data-lucide="droplets" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                  </div>
+                  <h3 style="font-size: 1.4rem; margin: 0;">Total Liquidity</h3>
+                  <p style="font-size: 1.15rem; margin: 0;">You can withdraw your funds anytime without lockups.</p>
+                </article>
+                <article class="panel" style="padding: 42px; border-top: 4px solid var(--primary-500); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;">
+                  <div style="width: 64px; height: 64px; background: rgba(245, 158, 11, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                    <i data-lucide="handshake" style="color: var(--primary-500); width: 32px; height: 32px;"></i>
+                  </div>
+                  <h3 style="font-size: 1.4rem; margin: 0;">True Alignment</h3>
+                  <p style="font-size: 1.15rem; margin: 0;">Gain only earns a fee when you actually profit.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 15: What Happens Next -->
+        <section class="slide theme-dark" id="slide-15" data-title="What Happens Next">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="./logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="./logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">15 / 15</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Implementation</div>
+              <h2 class="slide-title">
+                What Happens Next
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="timeline" style="gap: 24px; grid-template-columns: repeat(4, minmax(0, 1fr));">
+                <article class="timeline-step" style="min-height: auto">
+                  <span class="timeline-badge" style="margin-bottom: 16px">1</span>
+                  <h3 style="font-size: 1.2rem">Open Account</h3>
+                  <p style="font-size: 1.05rem">Open your brokerage account.</p>
+                </article>
+                <article class="timeline-step" style="min-height: auto">
+                  <span class="timeline-badge" style="margin-bottom: 16px">2</span>
+                  <h3 style="font-size: 1.2rem">Fund</h3>
+                  <p style="font-size: 1.05rem">Fund it directly with the broker.</p>
+                </article>
+                <article class="timeline-step" style="min-height: auto">
+                  <span class="timeline-badge" style="margin-bottom: 16px">3</span>
+                  <h3 style="font-size: 1.2rem">Authorize</h3>
+                  <p style="font-size: 1.05rem">Authorize Gain to trade.</p>
+                </article>
+                <article class="timeline-step" style="min-height: auto">
+                  <span class="timeline-badge" style="margin-bottom: 16px">4</span>
+                  <h3 style="font-size: 1.2rem">Monitor</h3>
+                  <p style="font-size: 1.05rem">Monitor everything in real time.</p>
+                </article>
+              </div>
+
+              <div style="margin-top: 32px;">
+                <aside class="contact-card" style="padding: 32px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px;">
+                  <div>
+                    <p class="metric-label" style="margin-bottom: 8px">Contact</p>
+                    <p class="contact-value" style="font-size: 1.5rem">Robert P. McDonell</p>
+                    <p style="font-size: 1.1rem; opacity: 0.8">Founder &amp; CEO, Gain Inc.</p>
+                  </div>
+                  <div style="display: flex; gap: 48px; flex-wrap: wrap;">
+                    <p style="margin-bottom: 0;">
+                      <span class="metric-label">Email</span><br />
+                      <span class="contact-value" style="font-size: 1.1rem">robert@gain.inc</span>
+                    </p>
+                    <p style="margin-bottom: 0;">
+                      <span class="metric-label">Calendar</span><br />
+                      <span class="contact-value" style="font-size: 1.1rem">calendly.com/robert-mcdonell</span>
+                    </p>
+                    <p style="margin-bottom: 0;">
+                      <span class="metric-label">Telephone &amp; WhatsApp</span><br />
+                      <span class="contact-value" style="font-size: 1.1rem">+503 7296 5564</span>
+                    </p>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const progressNav = document.getElementById("progress-nav");
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      let activeIndex = 0;
+
+      function scrollToSlide(index) {
+        const boundedIndex = Math.max(0, Math.min(slides.length - 1, index));
+        slides[boundedIndex].scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "center",
+        });
+      }
+
+      function updateActive(index) {
+        activeIndex = index;
+        Array.from(progressNav.children).forEach((dot, dotIndex) => {
+          dot.classList.toggle("active", dotIndex === index);
+          dot.setAttribute(
+            "aria-current",
+            dotIndex === index ? "true" : "false",
+          );
+        });
+      }
+
+      slides.forEach((slide, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "progress-dot";
+        dot.setAttribute(
+          "aria-label",
+          `Go to slide ${index + 1}: ${slide.dataset.title}`,
+        );
+        dot.title = `${index + 1}. ${slide.dataset.title}`;
+        dot.addEventListener("click", () => scrollToSlide(index));
+        progressNav.appendChild(dot);
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (!visible) {
+            return;
+          }
+
+          updateActive(slides.indexOf(visible.target));
+        },
+        {
+          threshold: [0.45, 0.65, 0.85],
+        },
+      );
+
+      slides.forEach((slide) => observer.observe(slide));
+      updateActive(0);
+
+      document.getElementById("prev-slide").addEventListener("click", () => {
+        scrollToSlide(activeIndex - 1);
+      });
+
+      document.getElementById("next-slide").addEventListener("click", () => {
+        scrollToSlide(activeIndex + 1);
+      });
+
+      // Print / Save PDF — restore when ready
+      // document.getElementById("print-deck").addEventListener("click", () => {
+      //   window.print();
+      // });
+
+      window.addEventListener("keydown", (event) => {
+        if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(event.key)) {
+          event.preventDefault();
+          scrollToSlide(activeIndex + 1);
+        }
+
+        if (["ArrowLeft", "ArrowUp", "PageUp"].includes(event.key)) {
+          event.preventDefault();
+          scrollToSlide(activeIndex - 1);
+        }
+
+        if (
+          event.key.toLowerCase() === "p" &&
+          (event.metaKey || event.ctrlKey)
+        ) {
+          document.body.classList.add("pdf-export-mode");
+        }
+      });
+
+      window.addEventListener("beforeprint", () => {
+        document.body.classList.add("pdf-export-mode");
+      });
+
+      window.addEventListener("afterprint", () => {
+        document.body.classList.remove("pdf-export-mode");
+      });
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

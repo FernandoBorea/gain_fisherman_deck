@@ -3,41 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gain x Fisherman Partner Deck</title>
+    <title>Gain — Decks</title>
     <style>
       :root {
         --primary-500: #f59e0b;
         --primary-700: #a86405;
         --accent-500: #ff7a00;
         --accent-700: #a84f00;
-        --secondary-0: #fdfbf8;
-        --secondary-50: #f8f1e9;
-        --secondary-100: #f1e5d8;
-        --secondary-200: #e9d8c5;
-        --secondary-300: #d8c3ae;
         --neutral-0: #f6f2ee;
         --neutral-200: #b8b1a9;
         --neutral-500: #5c554e;
         --neutral-700: #211b16;
         --neutral-900: #0f0803;
         --neutral-950: #0b0602;
-        --shadow-strong: 0 24px 64px rgba(17, 10, 3, 0.08);
-        --shadow-soft: 0 8px 24px rgba(17, 10, 3, 0.04);
-        --radius-xl: 34px;
+        --shadow-soft: 0 8px 24px rgba(17, 10, 3, 0.06);
+        --shadow-card: 0 24px 48px rgba(17, 10, 3, 0.08);
         --radius-lg: 24px;
-        --radius-md: 18px;
+        --radius-xl: 32px;
         --font-display: Georgia, "Times New Roman", serif;
         --font-body: "Trebuchet MS", "Gill Sans", "Segoe UI", sans-serif;
       }
 
       * {
         box-sizing: border-box;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      html {
-        scroll-behavior: smooth;
       }
 
       body {
@@ -45,2508 +33,301 @@
         font-family: var(--font-body);
         background:
           radial-gradient(
-            circle at top left,
-            rgba(255, 183, 51, 0.14),
-            transparent 28%
+            ellipse 120% 80% at 20% 0%,
+            rgba(255, 202, 92, 0.18),
+            transparent 50%
           ),
           radial-gradient(
-            circle at bottom right,
-            rgba(255, 122, 0, 0.1),
-            transparent 24%
+            ellipse 100% 60% at 85% 100%,
+            rgba(255, 122, 0, 0.12),
+            transparent 45%
           ),
-          linear-gradient(180deg, #fdfbf8 0%, #f6f2ee 100%);
+          linear-gradient(180deg, #fdfbf8 0%, #f8f4f0 50%, #f6f2ee 100%);
         color: var(--neutral-900);
-        overflow-x: hidden;
-      }
-
-      .shell {
         min-height: 100vh;
-        padding: 28px 28px 56px;
-      }
-
-      .controls {
-        position: fixed;
-        right: 22px;
-        top: 22px;
-        z-index: 20;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        padding: 10px;
-        background: rgba(248, 241, 233, 0.82);
-        border: 1px solid rgba(92, 85, 78, 0.18);
-        border-radius: 999px;
-        backdrop-filter: blur(12px);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .control-button {
-        border: 0;
-        border-radius: 999px;
-        padding: 12px 18px;
-        font: inherit;
-        font-size: 0.92rem;
-        font-weight: 700;
-        color: var(--neutral-950);
-        background: linear-gradient(135deg, #ffe7b7 0%, #ffca5c 100%);
-        cursor: pointer;
-        transition:
-          transform 160ms ease,
-          box-shadow 160ms ease;
-        box-shadow: inset 0 0 0 1px rgba(11, 6, 2, 0.08);
-      }
-
-      .control-button.secondary {
-        background: rgba(255, 255, 255, 0.92);
-      }
-
-      .control-button:hover,
-      .control-button:focus-visible {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-soft);
-        outline: none;
-      }
-
-      .progress {
-        position: fixed;
-        left: 22px;
-        top: 50%;
-        z-index: 20;
-        transform: translateY(-50%);
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        padding: 12px;
-        background: rgba(248, 241, 233, 0.8);
-        border: 1px solid rgba(92, 85, 78, 0.18);
-        border-radius: 999px;
-        backdrop-filter: blur(12px);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .progress-dot {
-        width: 11px;
-        height: 11px;
-        border: 0;
-        border-radius: 999px;
-        background: rgba(92, 85, 78, 0.3);
-        cursor: pointer;
-        transition:
-          transform 160ms ease,
-          background-color 160ms ease;
-      }
-
-      .progress-dot:hover,
-      .progress-dot:focus-visible {
-        transform: scale(1.18);
-        outline: none;
-      }
-
-      .progress-dot.active {
-        background: linear-gradient(
-          135deg,
-          var(--primary-500),
-          var(--accent-500)
-        );
-        transform: scale(1.2);
-      }
-
-      .deck {
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
         align-items: center;
+        justify-content: center;
+        padding: 32px 24px 48px;
+      }
+
+      .page-wrapper {
+        width: 100%;
+        max-width: 480px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(92, 85, 78, 0.1);
+        border-radius: var(--radius-xl);
+        padding: 40px 36px 36px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .home-header {
+        text-align: center;
+        margin-bottom: 36px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid rgba(92, 85, 78, 0.1);
+      }
+
+      .home-header img {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        display: block;
         margin: 0 auto;
       }
 
-      .slide {
-        position: relative;
-        width: min(1500px, calc(100vw - 128px));
-        aspect-ratio: 16 / 9;
-        overflow: hidden;
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-strong);
-        scroll-snap-align: center;
-        isolation: isolate;
-        display: grid;
-        padding: 56px 64px;
-      }
-
-      .slide::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background:
-          linear-gradient(140deg, rgba(255, 255, 255, 0.08), transparent 32%),
-          radial-gradient(
-            circle at 88% 16%,
-            rgba(255, 122, 0, 0.12),
-            transparent 19%
-          ),
-          radial-gradient(
-            circle at 14% 100%,
-            rgba(245, 158, 11, 0.1),
-            transparent 28%
-          );
-        z-index: -1;
-      }
-
-      .theme-dark {
-        background:
-          linear-gradient(135deg, rgba(245, 158, 11, 0.11), transparent 44%),
-          linear-gradient(180deg, #140a04 0%, #0b0602 100%);
-        color: var(--neutral-0);
-      }
-
-      .theme-dark::before {
-        background:
-          radial-gradient(
-            circle at 15% 18%,
-            rgba(245, 158, 11, 0.2),
-            transparent 26%
-          ),
-          radial-gradient(
-            circle at 100% 0%,
-            rgba(255, 122, 0, 0.16),
-            transparent 24%
-          ),
-          linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 45%);
-      }
-
-      .theme-light {
-        background:
-          linear-gradient(
-            135deg,
-            rgba(255, 250, 240, 0.92),
-            rgba(241, 229, 216, 0.88)
-          ),
-          linear-gradient(180deg, #fdfbf8 0%, #f6f2ee 100%);
+      .home-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        margin: 20px 0 0;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
         color: var(--neutral-900);
       }
 
-      .theme-amber {
-        background:
-          linear-gradient(
-            160deg,
-            rgba(255, 244, 224, 0.96),
-            rgba(255, 235, 221, 0.94)
-          ),
-          linear-gradient(180deg, #fff9ed 0%, #fdfbf8 100%);
-        color: var(--neutral-900);
+      .home-subtitle {
+        margin: 10px 0 0;
+        font-size: 0.95rem;
+        color: var(--neutral-500);
+        font-weight: 500;
       }
 
-      .slide-grid {
+      .nav {
         display: flex;
         flex-direction: column;
-        height: 100%;
-      }
-
-      .slide-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 24px;
-      }
-
-      .brand-lockup {
-        display: inline-flex;
-        align-items: center;
         gap: 14px;
       }
 
-      .brand-lockup img {
-        height: 28px;
-        width: auto;
-        object-fit: contain;
-      }
-      .slide-logo {
-        height: 28px;
-        width: auto;
-        object-fit: contain;
-      }
-      .theme-light .logo-dark,
-      .theme-amber .logo-dark {
-        display: none;
-      }
-      .theme-dark .logo-light {
-        display: none;
-      }
-      .slide-header {
+      .nav-button {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
-        margin-bottom: 32px;
-      }
-      .slide-content-header {
-        margin-bottom: 32px;
-      }
-
-      .eyebrow {
-        display: block;
-        margin-bottom: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        font-size: 0.77rem;
-        font-weight: 800;
-        color: var(--accent-500);
-      }
-
-      .theme-dark .eyebrow {
-        color: #ffca5c;
-      }
-
-      .date-stamp,
-      .slide-index {
-        font-size: 0.86rem;
-        color: rgba(92, 85, 78, 0.88);
-      }
-
-      .theme-dark .date-stamp,
-      .theme-dark .slide-index {
-        color: rgba(246, 242, 238, 0.74);
-      }
-
-      .hero-title,
-      .slide-title {
-        margin: 0;
-        font-family: var(--font-display);
-        line-height: 0.94;
-        letter-spacing: -0.04em;
-      }
-
-      .hero-title {
-        max-width: 11ch;
-        font-size: clamp(3.3rem, 5.5vw, 5.9rem);
-      }
-
-      .slide-title {
-        max-width: 18ch;
-        margin-top: 8px;
-        font-size: clamp(2.1rem, 3.7vw, 4.1rem);
-      }
-
-      .hero-subtitle,
-      .slide-subtitle {
-        margin: 0;
-        max-width: 68ch;
-        line-height: 1.35;
-        font-size: clamp(1rem, 1.58vw, 1.42rem);
-        color: rgba(92, 85, 78, 0.96);
-      }
-
-      .theme-dark .hero-subtitle,
-      .theme-dark .slide-subtitle {
-        color: rgba(246, 242, 238, 0.82);
-      }
-
-      .pills,
-      .tag-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .pill,
-      .tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        font-size: 0.9rem;
+        padding: 18px 22px;
+        font: inherit;
+        font-size: 1.08rem;
         font-weight: 700;
-        border: 1px solid rgba(92, 85, 78, 0.12);
-        background: rgba(255, 255, 255, 0.78);
         color: var(--neutral-950);
-      }
-
-      .theme-dark .pill,
-      .theme-dark .tag {
-        background: rgba(246, 242, 238, 0.08);
-        border-color: rgba(246, 242, 238, 0.12);
-        color: var(--neutral-0);
-      }
-
-      .accent-card,
-      .panel {
+        background: linear-gradient(135deg, #ffe7b7 0%, #ffca5c 100%);
+        border: 1px solid rgba(11, 6, 2, 0.06);
         border-radius: var(--radius-lg);
-        border: 1px solid rgba(92, 85, 78, 0.08);
-        background: rgba(255, 255, 255, 0.5);
-      }
-      .point-card,
-      .timeline-step {
-        background: transparent;
-      }
-      .metric-card,
-      .quote-card {
-        background: transparent;
-        border: none;
-        box-shadow: none;
-      }
-
-      .theme-dark .accent-card,
-      .theme-dark .panel {
-        background: rgba(246, 242, 238, 0.04);
-        border-color: rgba(246, 242, 238, 0.08);
-      }
-      .theme-dark .point-card,
-      .theme-dark .timeline-step {
-        background: transparent;
-      }
-
-      .accent-card {
-        padding: 18px 20px;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 202, 92, 0.26),
-          rgba(255, 235, 221, 0.72)
-        );
-      }
-
-      .theme-dark .accent-card {
-        background: linear-gradient(
-          135deg,
-          rgba(245, 158, 11, 0.18),
-          rgba(255, 122, 0, 0.08)
-        );
-      }
-
-      .grid-2,
-      .grid-3,
-      .grid-4,
-      .metric-grid {
-        display: grid;
-        gap: 24px;
-      }
-
-      .grid-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .grid-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .grid-4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-      .metric-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 32px 24px;
-      }
-
-      .grid-1 {
-        display: grid;
-        gap: 24px;
-      }
-
-      .panel {
-        padding: 36px;
-      }
-      .point-card,
-      .metric-card,
-      .timeline-step {
-        padding: 0;
-      }
-      .quote-card {
-        padding: 0;
-      }
-
-      .point-card h3,
-      .timeline-step h3 {
-        margin: 0 0 12px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid var(--primary-500);
-        font-size: 1.08rem;
-        line-height: 1.18;
-      }
-      .panel h3 {
-        margin: 0 0 8px;
-        font-size: 1.08rem;
-        line-height: 1.18;
-      }
-
-      .point-card p,
-      .panel p,
-      .timeline-step p,
-      .mini-list,
-      .metric-caption {
-        margin: 0;
-        line-height: 1.35;
-        color: rgba(92, 85, 78, 0.96);
-      }
-
-      .theme-dark .point-card p,
-      .theme-dark .panel p,
-      .theme-dark .timeline-step p,
-      .theme-dark .mini-list,
-      .theme-dark .metric-caption {
-        color: rgba(246, 242, 238, 0.78);
-      }
-
-      .metric-card {
-        display: grid;
-        gap: 6px;
-        align-content: start;
-      }
-
-      .metric-value {
-        margin: 0;
-        font-size: clamp(1.6rem, 2.6vw, 2.6rem);
-        line-height: 0.95;
-        letter-spacing: -0.05em;
-        font-weight: 900;
-        color: var(--accent-700);
-      }
-
-      .theme-dark .metric-value {
-        color: #ffd98a;
-      }
-
-      .metric-label {
-        margin: 0;
-        font-size: 0.82rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-weight: 800;
-        color: rgba(92, 85, 78, 0.76);
-      }
-
-      .theme-dark .metric-label {
-        color: rgba(246, 242, 238, 0.64);
-      }
-
-      .quote-card {
-        display: grid;
-        gap: 24px;
-        align-content: center;
-        padding: 0;
-        background: transparent;
-        border-left: 4px solid var(--primary-500);
-        padding-left: 32px;
-      }
-
-      .quote-card blockquote {
-        margin: 0;
-        font-family: var(--font-display);
-        font-size: clamp(2rem, 3.2vw, 3.2rem);
-        line-height: 1.05;
-        letter-spacing: -0.03em;
-        color: var(--accent-700);
-      }
-      .theme-dark .quote-card blockquote {
-        color: #ffd98a;
-      }
-
-      .quote-card cite {
-        font-style: normal;
-        font-weight: 700;
-        color: rgba(92, 85, 78, 0.84);
-      }
-
-      .quote-card .source {
-        font-size: 0.85rem;
-        line-height: 1.3;
-        color: rgba(92, 85, 78, 0.76);
-      }
-
-      .check-list,
-      .simple-list {
-        display: grid;
-        gap: 10px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .check-list li,
-      .simple-list li {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 10px;
-        align-items: start;
-        line-height: 1.32;
-      }
-
-      .bullet {
-        width: 11px;
-        height: 11px;
-        border-radius: 999px;
-        margin-top: 0.35em;
-        background: linear-gradient(
-          135deg,
-          var(--primary-500),
-          var(--accent-500)
-        );
-        box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.13);
-      }
-
-      .theme-dark .bullet {
-        box-shadow: 0 0 0 5px rgba(255, 217, 138, 0.12);
-      }
-
-      .split-highlight {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-        gap: 32px;
-        align-items: stretch;
-      }
-
-      .process-flow {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-        align-items: stretch;
-      }
-
-      .flow-step {
-        position: relative;
-        padding: 0;
-        background: transparent;
-        border: none;
-        border-left: 2px solid rgba(92, 85, 78, 0.2);
-        padding-left: 24px;
-      }
-
-      .theme-dark .flow-step {
-        background: transparent;
-        border-left-color: rgba(246, 242, 238, 0.2);
-      }
-
-      .flow-step::after {
-        content: ">";
-        position: absolute;
-        right: -13px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.5rem;
-        font-weight: 900;
-        color: rgba(92, 85, 78, 0.32);
-      }
-
-      .theme-dark .flow-step::after {
-        color: rgba(246, 242, 238, 0.26);
-      }
-
-      .flow-step:last-child::after {
-        display: none;
-      }
-
-      .flow-number {
-        margin: 0 0 12px;
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        font-weight: 800;
-        color: var(--accent-500);
-      }
-
-      .flow-title {
-        margin: 0 0 8px;
-        font-size: 1.12rem;
-        line-height: 1.12;
-      }
-
-      .flow-copy {
-        margin: 0;
-        line-height: 1.34;
-        color: rgba(92, 85, 78, 0.9);
-      }
-
-      .theme-dark .flow-copy {
-        color: rgba(246, 242, 238, 0.76);
-      }
-
-      .ratio-strip,
-      .support-strip,
-      .cta-strip {
-        display: grid;
-        gap: 14px;
-        padding: 18px 20px;
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.72);
-        border: 1px solid rgba(92, 85, 78, 0.12);
-      }
-
-      .theme-dark .ratio-strip,
-      .theme-dark .support-strip,
-      .theme-dark .cta-strip {
-        background: rgba(246, 242, 238, 0.08);
-        border-color: rgba(246, 242, 238, 0.12);
-      }
-
-      .ratio-strip strong,
-      .support-strip strong,
-      .cta-strip strong {
-        display: block;
-        font-size: 1.05rem;
-        margin-bottom: 3px;
-      }
-
-      .economics-table {
-        display: grid;
-        gap: 12px;
-      }
-
-      .economics-row {
-        display: grid;
-        grid-template-columns: 1.1fr 0.22fr 1fr;
-        align-items: center;
-        gap: 14px;
-        padding: 16px 0;
-        border-bottom: 1px solid rgba(92, 85, 78, 0.12);
-        font-size: 1.08rem;
-        font-weight: 700;
-        background: transparent;
-        border-radius: 0;
-      }
-      .economics-row:last-child {
-        border-bottom: none;
-      }
-
-      .theme-dark .economics-row {
-        background: transparent;
-        border-bottom-color: rgba(246, 242, 238, 0.12);
-      }
-
-      .arrow-cell {
-        text-align: center;
-        color: var(--accent-500);
-        font-size: 1.25rem;
-        font-weight: 900;
-      }
-
-      .timeline {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 24px;
-      }
-
-      .timeline-step {
-        display: grid;
-        gap: 12px;
-        align-content: start;
-      }
-
-      .timeline-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        border-radius: 999px;
-        font-weight: 900;
-        color: var(--neutral-950);
-        background: linear-gradient(135deg, #ffe7b7, #ffca5c);
-      }
-
-      .theme-dark .timeline-badge {
-        background: linear-gradient(135deg, #ffd98a, #ffb633);
-      }
-
-      .closing-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-        gap: 32px;
-        align-items: stretch;
-      }
-
-      .contact-card {
-        display: grid;
-        gap: 12px;
-        padding: 24px;
-        border-radius: var(--radius-lg);
-        background: rgba(246, 242, 238, 0.08);
-        border: 1px solid rgba(246, 242, 238, 0.12);
-      }
-
-      .contact-card p {
-        margin: 0;
-        line-height: 1.35;
-        color: rgba(246, 242, 238, 0.82);
-      }
-
-      .contact-value {
-        font-size: 1.18rem;
-        font-weight: 700;
-        color: var(--neutral-0);
-      }
-
-      .footer-note {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 24px;
-        margin-top: auto;
-        font-size: 0.82rem;
-        color: rgba(92, 85, 78, 0.74);
-      }
-
-      .theme-dark .footer-note {
-        color: rgba(246, 242, 238, 0.58);
-      }
-
-      .hero-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-        gap: 28px;
-        align-items: end;
-        height: 100%;
-      }
-
-      .hero-panel {
-        display: grid;
-        gap: 24px;
-        align-content: end;
-      }
-
-      .hero-side {
-        display: grid;
-        gap: 24px;
-        align-content: stretch;
-      }
-
-      .hero-side .panel {
-        min-height: 0;
-      }
-
-      .hero-side .panel strong {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 0.92rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--accent-500);
-      }
-
-      .theme-dark .hero-side .panel strong {
-        color: #ffd98a;
-      }
-
-      .hero-side .panel p {
-        font-size: 1.12rem;
-      }
-
-      .large-number {
-        font-size: clamp(2.5rem, 4vw, 4.4rem);
-        line-height: 0.9;
-        letter-spacing: -0.06em;
-        font-weight: 900;
-        color: var(--accent-500);
-        margin: 0;
-      }
-
-      .theme-dark .large-number {
-        color: #ffd98a;
-      }
-
-      .muted {
-        color: rgba(92, 85, 78, 0.76);
-      }
-
-      .theme-dark .muted {
-        color: rgba(246, 242, 238, 0.66);
-      }
-
-      .wide {
-        max-width: none;
-      }
-
-      a {
-        color: inherit;
+        cursor: pointer;
+        text-align: left;
         text-decoration: none;
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        box-shadow: var(--shadow-soft);
       }
 
-      @media (max-width: 1200px) {
-        .shell {
-          padding: 80px 18px 36px;
-        }
-
-        .slide {
-          width: calc(100vw - 36px);
-          aspect-ratio: auto;
-          padding: 30px 24px;
-        }
-
-        .slide-header,
-        .brand-lockup {
-          align-items: flex-start;
-        }
-
-        .slide-header {
-          flex-direction: column;
-        }
-
-        .grid-4,
-        .metric-grid,
-        .process-flow,
-        .timeline,
-        .grid-3,
-        .hero-layout,
-        .split-highlight,
-        .closing-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .grid-2 {
-          grid-template-columns: 1fr;
-        }
-
-        .controls,
-        .progress {
-          transform: none;
-        }
-
-        .progress {
-          top: auto;
-          bottom: 18px;
-          left: 18px;
-          right: 18px;
-          flex-direction: row;
-          justify-content: center;
-        }
-
-        .controls {
-          right: 18px;
-          left: 18px;
-          justify-content: space-between;
-        }
-
-        .flow-step::after {
-          display: none;
-        }
+      .nav-button:hover,
+      .nav-button:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(17, 10, 3, 0.1);
+        outline: none;
       }
 
-      @media print {
-        @page {
-          size: 16in 9in;
-          margin: 0;
-        }
-
-        html,
-        body {
-          width: 16in;
-          margin: 0;
-          padding: 0;
-          background: white;
-          overflow: visible;
-        }
-
-        .shell {
-          min-height: 0;
-          padding: 0;
-        }
-
-        .deck {
-          gap: 0;
-        }
-
-        .slide {
-          width: 16in;
-          height: 9in;
-          min-height: 0;
-          aspect-ratio: auto;
-          border-radius: 0;
-          margin: 0;
-          padding: 0.42in 0.48in;
-          box-shadow: none;
-          break-after: page;
-          page-break-after: always;
-        }
-
-        .slide:last-child {
-          break-after: auto;
-          page-break-after: auto;
-        }
-
-        .controls,
-        .progress,
-        .no-print {
-          display: none !important;
-        }
-
-        * {
-          box-shadow: none !important;
-          text-shadow: none !important;
-          backdrop-filter: none !important;
-          -webkit-backdrop-filter: none !important;
-        }
-
-        .slide::before,
-        .flow-step::after {
-          display: none !important;
-        }
-
-        .slide-title {
-          font-size: 2.65rem;
-        }
-
-        .hero-title {
-          font-size: 4rem;
-        }
-
-        .hero-subtitle,
-        .slide-subtitle {
-          font-size: 1.1rem;
-        }
-
-        .metric-value {
-          font-size: 2rem;
-        }
-
-        .pdf-dense {
-          transform: scale(0.97);
-          transform-origin: top left;
-          width: calc(100% / 0.97);
-        }
-
-        /* Prevent grid collapsing in print */
-        .grid-2 {
-          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        }
-        .grid-3 {
-          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        }
-        .grid-4,
-        .process-flow {
-          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-        }
-        .metric-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        }
-        .hero-layout {
-          grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr) !important;
-        }
-        .split-highlight {
-          grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
-        }
-        .closing-grid {
-          grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr) !important;
-        }
-        .timeline {
-          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        }
-
-        /* Simplify glassmorphism to solid colors for PDF performance */
-        .accent-card,
-        .panel,
-        .ratio-strip,
-        .support-strip,
-        .cta-strip,
-        .contact-card {
-          background: white !important;
-          border: 1px solid rgba(92, 85, 78, 0.2) !important;
-        }
-
-        .theme-dark .accent-card,
-        .theme-dark .panel,
-        .theme-dark .ratio-strip,
-        .theme-dark .support-strip,
-        .theme-dark .cta-strip,
-        .theme-dark .contact-card {
-          background: #140a04 !important;
-          border: 1px solid rgba(246, 242, 238, 0.2) !important;
-        }
-
-        .timeline-badge {
-          background: #ffe7b7 !important;
-        }
-        .theme-dark .timeline-badge {
-          background: #ffd98a !important;
-        }
-        .bullet {
-          background: var(--primary-500) !important;
-        }
+      .nav-button .chevron {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        margin-left: 8px;
+        opacity: 0.7;
+        transition: transform 220ms ease;
       }
 
-      .pdf-export-mode {
-        background: white !important;
+      .nav-button[aria-expanded="true"] .chevron {
+        transform: rotate(180deg);
       }
 
-      .pdf-export-mode .slide::before,
-      .pdf-export-mode .controls,
-      .pdf-export-mode .progress {
-        display: none !important;
+      .nav-button.secondary {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(92, 85, 78, 0.14);
+        color: var(--neutral-900);
       }
 
-      .pdf-export-mode .theme-dark {
-        background: #0b0602 !important;
+      .deck-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 280ms ease, margin 280ms ease, opacity 200ms ease;
+        opacity: 0;
       }
 
-      .pdf-export-mode .theme-light {
-        background: #fdfbf8 !important;
+      .deck-list.visible {
+        grid-template-rows: 1fr;
+        margin-top: 6px;
+        margin-bottom: 4px;
+        opacity: 1;
       }
 
-      .pdf-export-mode .theme-amber {
-        background: #fff9ed !important;
+      .deck-list-inner {
+        overflow: hidden;
+      }
+
+      .deck-list ul {
+        list-style: none;
+        margin: 0;
+        padding: 10px 0 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .deck-list li {
+        margin: 0;
+      }
+
+      .deck-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(92, 85, 78, 0.1);
+        border-radius: 18px;
+        color: var(--neutral-900);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: background 180ms ease, border-color 180ms ease, transform 160ms ease;
+      }
+
+      .deck-link:hover,
+      .deck-link:focus-visible {
+        background: rgba(255, 250, 240, 0.98);
+        border-color: rgba(255, 122, 0, 0.35);
+        transform: translateX(4px);
+        outline: none;
+      }
+
+      .deck-link .pin {
+        flex-shrink: 0;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent-700);
+        font-weight: 800;
+      }
+
+      .deck-link .label {
+        flex-grow: 1;
+      }
+
+      .deck-link .arrow {
+        flex-shrink: 0;
+        color: var(--neutral-200);
+        font-size: 0.9rem;
+        transition: color 160ms ease, transform 160ms ease;
+      }
+
+      .deck-link:hover .arrow {
+        color: var(--accent-500);
+        transform: translateX(2px);
+      }
+
+      .footer {
+        margin-top: 32px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--neutral-500);
       }
     </style>
   </head>
   <body>
-    <div class="controls no-print">
-      <button class="control-button secondary" type="button" id="prev-slide">
-        Previous
-      </button>
-      <button class="control-button secondary" type="button" id="next-slide">
-        Next
-      </button>
-    </div>
+    <div class="page-wrapper">
+      <div class="card">
+        <header class="home-header">
+          <img src="./logo/main_logo.png" alt="Gain" />
+          <h1 class="home-title">Decks</h1>
+          <p class="home-subtitle">Partner & client presentations</p>
+        </header>
 
-    <div
-      class="progress no-print"
-      id="progress-nav"
-      aria-label="Slide progress"
-    ></div>
-
-    <div class="shell">
-      <main class="deck" id="deck">
-        <section class="slide theme-dark" id="slide-1" data-title="Cover">
-          <div class="slide-grid" style="display: flex; flex-direction: column">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="date-stamp">March 10, 2026</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Prepared for Fisherman</div>
-            </div>
-
-            <div
-              style="
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                flex-grow: 1;
-                gap: 32px;
-              "
-            >
-              <h1 class="hero-title" style="max-width: 16ch">
-                Systematic trading. Client-controlled capital.
-              </h1>
-              <p class="hero-subtitle">
-                A fully liquid trading program that gives clients transparency
-                and gives Fisherman clear, aligned economics.
-              </p>
-              <div class="pills">
-                <span class="pill">Client-owned accounts</span>
-                <span class="pill">No custody</span>
-                <span class="pill">Performance-aligned</span>
-              </div>
-            </div>
-
-            <div class="footer-note" style="margin-top: auto">
-              <div style="font-size: 1.05rem; color: var(--neutral-0)">
-                <strong>Robert P. McDonell</strong>
-                <span style="opacity: 0.7; font-weight: normal"
-                  >&mdash; Founder &amp; CEO, Gain Inc.</span
-                >
-              </div>
-              <span>1 / 12</span>
+        <nav class="nav">
+          <button
+            type="button"
+            class="nav-button"
+            id="partner-decks-toggle"
+            aria-expanded="false"
+            aria-controls="partner-deck-list"
+          >
+            <span>Partner decks</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="deck-list" id="partner-deck-list" aria-label="Available partner decks">
+            <div class="deck-list-inner">
+              <ul role="list">
+                <li>
+                  <a href="partner-deck.html" class="deck-link">
+                    <span class="pin">Pinned</span>
+                    <span class="label">Partner deck (overview)</span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="fisherman-deck.html" class="deck-link">
+                    <span class="label">Gain × Fisherman</span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </section>
 
-        <section class="slide theme-light" id="slide-2" data-title="Mandate">
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">2 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Mandate</div>
-              <h2 class="slide-title">
-                Risk-adjusted compounding inside a client-owned structure.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 48px;
-              "
-            >
-              <p class="slide-subtitle wide" style="font-size: 1.3rem">
-                Gain operates systematic multi-asset trading programs inside
-                regulated brokerage accounts owned by each client. The objective
-                is simple: compound capital in a fully liquid format without
-                taking custody or pooling funds.
-              </p>
-
-              <div class="grid-3" style="gap: 48px">
-                <article class="point-card">
-                  <h3 style="font-size: 1.3rem">Transparent structure</h3>
-                  <p style="font-size: 1.1rem">
-                    No custody. No capital pooling. Flexible withdrawals. Each
-                    client keeps a dedicated account in their own name.
-                  </p>
-                </article>
-                <article class="point-card">
-                  <h3 style="font-size: 1.3rem">Systematic execution</h3>
-                  <p style="font-size: 1.1rem">
-                    Algorithmic execution across an intraday to short-swing
-                    horizon with a process designed to reduce emotion and
-                    preserve discipline.
-                  </p>
-                </article>
-                <article class="point-card">
-                  <h3 style="font-size: 1.3rem">Aligned economics</h3>
-                  <p style="font-size: 1.1rem">
-                    Gain is paid on performance and execution economics, which
-                    keeps incentives tied to activity and results rather than
-                    lockups.
-                  </p>
-                </article>
-              </div>
-
-              <div
-                style="
-                  font-size: 1.4rem;
-                  font-weight: 700;
-                  color: var(--accent-700);
-                  text-align: center;
-                  margin-top: 16px;
-                "
-              >
-                Clients retain ownership and liquidity while Gain runs a
-                disciplined trading mandate on their behalf.
-              </div>
+          <button
+            type="button"
+            class="nav-button secondary"
+            id="client-decks-toggle"
+            aria-expanded="false"
+            aria-controls="client-deck-list"
+          >
+            <span>Client decks</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="deck-list" id="client-deck-list" aria-label="Available client decks">
+            <div class="deck-list-inner">
+              <ul role="list">
+                <li>
+                  <a href="client-deck.html" class="deck-link">
+                    <span class="pin">Pinned</span>
+                    <span class="label">Client deck (overview)</span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </section>
+        </nav>
+      </div>
 
-        <section
-          class="slide theme-amber"
-          id="slide-3"
-          data-title="Portfolio Context"
-        >
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">3 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Portfolio Context</div>
-              <h2 class="slide-title">
-                Portfolios are strong on exposure, weak on liquid
-                diversification.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 32px;
-              "
-            >
-              <div class="split-highlight">
-                <article class="quote-card" style="font-size: 0.9em">
-                  <blockquote style="font-size: clamp(1.8rem, 2.8vw, 2.8rem)">
-                    “Most investors treat volatility as a risk to be endured
-                    rather than an asset class to be harvested.”
-                  </blockquote>
-                  <cite>Market observation</cite>
-                  <p class="source">
-                    Source: Long Angle high-net-worth allocation research.
-                  </p>
-                </article>
-
-                <article
-                  class="panel"
-                  style="
-                    padding: 32px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                  "
-                >
-                  <h3 style="font-size: 1.2rem; margin-bottom: 16px">
-                    Where portfolios stay concentrated
-                  </h3>
-                  <ul class="check-list" style="gap: 16px; font-size: 1.05rem">
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Public equities remain the main liquid growth
-                        engine.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Private enterprise and real estate absorb a large share
-                        of conviction capital.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Fixed income provides ballast, but not much upside in
-                        volatile conditions.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Liquid strategies designed to benefit from volatility
-                        are often underrepresented.</span
-                      >
-                    </li>
-                  </ul>
-                </article>
-              </div>
-
-              <div
-                class="accent-card"
-                style="
-                  font-size: 1.15rem;
-                  text-align: center;
-                  padding: 16px 24px;
-                "
-              >
-                <p style="margin: 0">
-                  Gain acts as a complementary sleeve: not a replacement for
-                  core holdings, but a liquid strategy that broadens how the
-                  portfolio earns.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-light"
-          id="slide-4"
-          data-title="Compounding Record"
-        >
-          <div class="slide-grid pdf-dense">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">4 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Compounding Record</div>
-              <h2 class="slide-title">A multi-year compounding record.</h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 32px;
-              "
-            >
-              <p
-                class="slide-subtitle wide"
-                style="font-size: 1.3rem; margin-bottom: 0; margin-top: 0"
-              >
-                The core advantage is the combination of live repetition,
-                disciplined exposure, and a multi-year compounding record within
-                defined risk parameters.
-              </p>
-
-              <div class="grid-2" style="gap: 32px; align-items: center">
-                <div class="metric-grid" style="gap: 24px 16px">
-                  <article class="metric-card">
-                    <p class="metric-label">Trades Executed</p>
-                    <p class="metric-value">7,000+</p>
-                    <p class="metric-caption">
-                      Large enough to demonstrate repeatability.
-                    </p>
-                  </article>
-                  <article class="metric-card">
-                    <p class="metric-label">Expectancy</p>
-                    <p class="metric-value">79.0 pips</p>
-                    <p class="metric-caption">Positive edge per trade set.</p>
-                  </article>
-                  <article class="metric-card">
-                    <p class="metric-label">Profit Factor</p>
-                    <p class="metric-value">1.12</p>
-                    <p class="metric-caption">
-                      A process that compounds through volume and discipline.
-                    </p>
-                  </article>
-                  <article class="metric-card">
-                    <p class="metric-label">Average Trade</p>
-                    <p class="metric-value">~4 hours</p>
-                    <p class="metric-caption">Fast enough to stay adaptive.</p>
-                  </article>
-                  <article class="metric-card">
-                    <p class="metric-label">Exposure Cap</p>
-                    <p class="metric-value">7.5%</p>
-                    <p class="metric-caption">
-                      Active trade exposure kept defined.
-                    </p>
-                  </article>
-                  <article class="metric-card">
-                    <p class="metric-label">Operating Principle</p>
-                    <p class="metric-value">Rules first</p>
-                    <p class="metric-caption">
-                      All process-driven, not personality-driven.
-                    </p>
-                  </article>
-                </div>
-
-                <div
-                  class="panel"
-                  style="
-                    padding: 32px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                  "
-                >
-                  <h3 style="font-size: 1.3rem; margin-bottom: 16px">
-                    Performance highlights
-                  </h3>
-                  <div class="economics-table">
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.15rem; padding: 12px 0"
-                    >
-                      <span>CAGR since scaling (2020–2025)</span>
-                      <span class="arrow-cell">=</span>
-                      <span>36.0%</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.15rem; padding: 12px 0"
-                    >
-                      <span>CAGR full production (2021–2025)</span>
-                      <span class="arrow-cell">=</span>
-                      <span>42.9%</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.15rem; padding: 12px 0"
-                    >
-                      <span>2025 net return</span>
-                      <span class="arrow-cell">=</span>
-                      <span>132.99%</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.15rem; padding: 12px 0"
-                    >
-                      <span>2026 year to date</span>
-                      <span class="arrow-cell">=</span>
-                      <span>40%+</span>
-                    </div>
-                  </div>
-                  <p
-                    class="mini-list"
-                    style="margin-top: 24px; font-size: 1.1rem"
-                  >
-                    The program is repeatable because the process is structured.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-amber"
-          id="slide-5"
-          data-title="Strategy Framework"
-        >
-          <div class="slide-grid pdf-dense">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">5 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Strategy Framework</div>
-              <h2 class="slide-title">
-                The edge comes from structure, not discretionary calls.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 48px;
-              "
-            >
-              <div class="process-flow" style="gap: 32px">
-                <article class="flow-step">
-                  <p class="flow-number">Step 1</p>
-                  <h3 class="flow-title" style="font-size: 1.25rem">
-                    Rule-based signals
-                  </h3>
-                  <p class="flow-copy" style="font-size: 1.1rem">
-                    Trade ideas are generated from defined rules rather than
-                    on-the-fly opinion.
-                  </p>
-                </article>
-                <article class="flow-step">
-                  <p class="flow-number">Step 2</p>
-                  <h3 class="flow-title" style="font-size: 1.25rem">
-                    Structured sizing
-                  </h3>
-                  <p class="flow-copy" style="font-size: 1.1rem">
-                    Exposure is sized against risk limits so position-taking
-                    stays controlled.
-                  </p>
-                </article>
-                <article class="flow-step">
-                  <p class="flow-number">Step 3</p>
-                  <h3 class="flow-title" style="font-size: 1.25rem">
-                    Non-discretionary execution
-                  </h3>
-                  <p class="flow-copy" style="font-size: 1.1rem">
-                    Execution follows the playbook instead of mood, impulse, or
-                    market noise.
-                  </p>
-                </article>
-                <article class="flow-step">
-                  <p class="flow-number">Step 4</p>
-                  <h3 class="flow-title" style="font-size: 1.25rem">
-                    Quarterly optimization
-                  </h3>
-                  <p class="flow-copy" style="font-size: 1.1rem">
-                    Strategies are refined with real tick data, not modeled
-                    assumptions.
-                  </p>
-                </article>
-              </div>
-
-              <div class="grid-3" style="gap: 48px">
-                <article class="point-card">
-                  <h3 style="font-size: 1.25rem">Markets traded</h3>
-                  <p style="font-size: 1.1rem">
-                    FX majors and crosses, metals, and indices.
-                  </p>
-                </article>
-                <article class="point-card">
-                  <h3 style="font-size: 1.25rem">Testing discipline</h3>
-                  <p style="font-size: 1.1rem">
-                    Optimization work uses real tick data rather than synthetic
-                    modeling.
-                  </p>
-                </article>
-                <article class="point-card">
-                  <h3 style="font-size: 1.25rem">Risk guardrail</h3>
-                  <p style="font-size: 1.1rem">
-                    Equity drawdown discipline remains capped at 7.5% on active
-                    exposure.
-                  </p>
-                </article>
-              </div>
-
-              <div
-                style="
-                  font-size: 1.5rem;
-                  font-weight: 700;
-                  color: var(--accent-700);
-                  text-align: center;
-                  margin-top: 16px;
-                "
-              >
-                Concentration creates fragility. Structure creates resilience.
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-light"
-          id="slide-6"
-          data-title="Risk Profile"
-        >
-          <div class="slide-grid pdf-dense">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">6 / 12</span>
-            </div>
-            <div
-              class="slide-content-header"
-              style="margin-bottom: 48px; margin-top: 16px"
-            >
-              <div class="eyebrow">Risk Profile</div>
-              <h2 class="slide-title">
-                External verification matters as much as performance.
-              </h2>
-            </div>
-
-            <div
-              class="grid-2"
-              style="flex-grow: 1; align-items: stretch; gap: 48px"
-            >
-              <article
-                class="panel"
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  padding: 42px;
-                "
-              >
-                <h3>Independent tracking</h3>
-                <ul class="check-list">
-                  <li>
-                    <span class="bullet"></span
-                    ><span
-                      >Live results are monitored through independent
-                      third-party tracking on Myfxbook.</span
-                    >
-                  </li>
-                  <li>
-                    <span class="bullet"></span
-                    ><span
-                      >Verification is external, which reduces the
-                      “self-reported performance” objection.</span
-                    >
-                  </li>
-                  <li>
-                    <span class="bullet"></span
-                    ><span
-                      >The focus is risk efficiency: the program is managed to
-                      stay disciplined, not to chase headlines.</span
-                    >
-                  </li>
-                </ul>
-                <p class="mini-list" style="margin-top: 16px">
-                  <strong>Live tracking:</strong>
-                  <a
-                    href="https://www.myfxbook.com/members/Gain_Enterprises/usd-account-by-gain-enterprises/11818420"
-                    target="_blank"
-                    style="text-decoration: underline"
-                    >myfxbook.com/members/Gain_Enterprises</a
-                  >
-                </p>
-              </article>
-
-              <div class="metric-grid">
-                <article class="metric-card">
-                  <p class="metric-label">Sharpe Ratio</p>
-                  <p class="metric-value">~3.1</p>
-                  <p class="metric-caption">Strong return per unit of risk.</p>
-                </article>
-                <article class="metric-card">
-                  <p class="metric-label">Sortino Ratio</p>
-                  <p class="metric-value">~9.0</p>
-                  <p class="metric-caption">
-                    Especially strong downside-adjusted profile.
-                  </p>
-                </article>
-                <article class="metric-card">
-                  <p class="metric-label">Calmar Ratio</p>
-                  <p class="metric-value">~1.2–1.4</p>
-                  <p class="metric-caption">
-                    Healthy balance of return to drawdown.
-                  </p>
-                </article>
-                <article class="metric-card">
-                  <p class="metric-label">Historical Max Drawdown</p>
-                  <p class="metric-value">~30%</p>
-                  <p class="metric-caption">
-                    Context for full-cycle stress behavior.
-                  </p>
-                </article>
-                <article class="metric-card">
-                  <p class="metric-label">Floating Drawdown Limit</p>
-                  <p class="metric-value">7.5%</p>
-                  <p class="metric-caption">Operational cap remains firm.</p>
-                </article>
-                <article class="metric-card">
-                  <p class="metric-label">Z-Score</p>
-                  <p class="metric-value">99.99%</p>
-                  <p class="metric-caption">
-                    Probability of non-random results.
-                  </p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-dark"
-          id="slide-7"
-          data-title="Custody Structure"
-        >
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">7 / 12</span>
-            </div>
-            <div
-              class="slide-content-header"
-              style="margin-bottom: 64px; margin-top: 24px"
-            >
-              <div class="eyebrow">Custody Structure</div>
-              <h2 class="slide-title">
-                Clients keep ownership. Gain receives authority to trade, not to
-                hold funds.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 16px;
-              "
-            >
-              <div class="grid-2" style="align-items: stretch; gap: 32px">
-                <article
-                  class="panel"
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding: 24px;
-                  "
-                >
-                  <h3 style="font-size: 1.15rem; margin-bottom: 16px">
-                    Structural advantages
-                  </h3>
-                  <ul class="check-list" style="gap: 12px; font-size: 0.95rem">
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Capital remains in segregated brokerage accounts.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Gain operates under Limited Power of Attorney.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >No custody means less friction and less perceived
-                        opacity.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span>No lockups preserves client flexibility.</span>
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Clients can withdraw without needing to untangle pooled
-                        capital.</span
-                      >
-                    </li>
-                  </ul>
-                </article>
-
-                <div
-                  class="accent-card"
-                  style="
-                    padding: 24px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                  "
-                >
-                  <p class="metric-label">Takeaway</p>
-                  <p
-                    style="
-                      margin: 0;
-                      font-family: var(--font-display);
-                      font-size: clamp(2rem, 3vw, 3rem);
-                      line-height: 1.02;
-                      letter-spacing: -0.04em;
-                    "
-                  >
-                    Clear separation of capital ownership and trading authority.
-                  </p>
-                </div>
-              </div>
-
-              <div class="cta-strip" style="padding: 24px; text-align: center">
-                <strong style="font-size: 1.1rem">The bottom line</strong>
-                <span style="font-size: 0.95rem"
-                  >The client story stays simple: “Your money stays in your
-                  account. Gain manages the trading mandate.”</span
-                >
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-light"
-          id="slide-8"
-          data-title="Infrastructure"
-        >
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">8 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Brokerage Infrastructure</div>
-              <h2 class="slide-title">
-                Execution sits on regulated brokerage rails, not internal black
-                boxes.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-              "
-            >
-              <div
-                class="split-highlight"
-                style="gap: 64px; align-items: center"
-              >
-                <article class="panel" style="padding: 48px">
-                  <h3 style="font-size: 1.4rem; margin-bottom: 24px">
-                    Broker relationship
-                  </h3>
-                  <p
-                    style="
-                      font-size: 1.15rem;
-                      line-height: 1.5;
-                      margin-bottom: 32px;
-                    "
-                  >
-                    Execution runs through Pepperstone. This provides regulated
-                    oversight, segregated client funds, and institutional-grade
-                    access rather than improvised internal plumbing.
-                  </p>
-                  <div class="tag-row" style="gap: 12px">
-                    <span class="tag" style="padding: 12px 20px">ASIC</span>
-                    <span class="tag" style="padding: 12px 20px">FCA</span>
-                    <span class="tag" style="padding: 12px 20px">BaFin</span>
-                    <span class="tag" style="padding: 12px 20px">CySEC</span>
-                    <span class="tag" style="padding: 12px 20px">DFSA</span>
-                  </div>
-                </article>
-
-                <div class="grid-1" style="gap: 48px">
-                  <article class="point-card">
-                    <h3 style="font-size: 1.3rem">True pricing</h3>
-                    <p style="font-size: 1.15rem">
-                      Deep liquidity access through an ECN-style environment.
-                    </p>
-                  </article>
-                  <article class="point-card">
-                    <h3 style="font-size: 1.3rem">Multi-provider liquidity</h3>
-                    <p style="font-size: 1.15rem">
-                      Quotes are aggregated across top-tier liquidity providers.
-                    </p>
-                  </article>
-                  <article class="point-card">
-                    <h3 style="font-size: 1.3rem">Direct market access</h3>
-                    <p style="font-size: 1.15rem">
-                      Designed to avoid dealing-desk conflicts and preserve
-                      execution integrity.
-                    </p>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-amber"
-          id="slide-9"
-          data-title="Economic Structure"
-        >
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">9 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Economic Structure</div>
-              <h2 class="slide-title">
-                Transparent and straightforward economics.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-              "
-            >
-              <div class="grid-2" style="align-items: stretch; gap: 64px">
-                <article
-                  class="panel"
-                  style="
-                    padding: 48px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                  "
-                >
-                  <h3 style="font-size: 1.4rem; margin-bottom: 32px">
-                    Broker commission model
-                  </h3>
-                  <div class="economics-table">
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 24px 0"
-                    >
-                      <span>Round-turn lot commission</span>
-                      <span class="arrow-cell">=</span>
-                      <span>$7.00</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 24px 0"
-                    >
-                      <span>Introducing broker allocation</span>
-                      <span class="arrow-cell">=</span>
-                      <span>$3.00</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 24px 0"
-                    >
-                      <span>Minimum monthly volume target</span>
-                      <span class="arrow-cell">=</span>
-                      <span>~1,500 lots</span>
-                    </div>
-                  </div>
-                </article>
-
-                <article
-                  class="panel"
-                  style="
-                    padding: 48px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                  "
-                >
-                  <h3 style="font-size: 1.4rem; margin-bottom: 32px">
-                    Current Gain activity
-                  </h3>
-                  <div class="economics-table">
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 24px 0"
-                    >
-                      <span>Lots per $1M each month</span>
-                      <span class="arrow-cell">=</span>
-                      <span>~6,000</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 24px 0"
-                    >
-                      <span>Lots per $1M annually</span>
-                      <span class="arrow-cell">=</span>
-                      <span>~72,000</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 24px 0"
-                    >
-                      <span>Minimum client allocation</span>
-                      <span class="arrow-cell">=</span>
-                      <span>$1,000</span>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-light"
-          id="slide-10"
-          data-title="Partnership Economics"
-        >
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">10 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Partnership Economics</div>
-              <h2 class="slide-title">
-                Meaningful revenue begins at modest AUM.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 48px;
-              "
-            >
-              <p class="slide-subtitle wide" style="font-size: 1.3rem">
-                Fisherman receives 50% of the broker rebate, or
-                <strong>$1.50 per lot</strong>. This keeps the upside easy to
-                model and clearly aligned with trading activity.
-              </p>
-
-              <div class="grid-2" style="align-items: stretch; gap: 48px">
-                <article
-                  class="panel"
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding: 42px;
-                  "
-                >
-                  <div class="economics-table">
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 18px 0"
-                    >
-                      <span>$2M AUM</span>
-                      <span class="arrow-cell">→</span>
-                      <span>$216,000 annually</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 18px 0"
-                    >
-                      <span>$5M AUM</span>
-                      <span class="arrow-cell">→</span>
-                      <span>$540,000 annually</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 18px 0"
-                    >
-                      <span>$10M AUM</span>
-                      <span class="arrow-cell">→</span>
-                      <span>$1,080,000 annually</span>
-                    </div>
-                    <div
-                      class="economics-row"
-                      style="font-size: 1.2rem; padding: 18px 0"
-                    >
-                      <span>$20M AUM</span>
-                      <span class="arrow-cell">→</span>
-                      <span>$2,160,000 annually</span>
-                    </div>
-                  </div>
-                </article>
-
-                <article
-                  class="panel"
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    gap: 24px;
-                    padding: 42px;
-                  "
-                >
-                  <h3 style="font-size: 1.4rem; margin-bottom: 0">
-                    Revenue model
-                  </h3>
-                  <ul class="check-list" style="gap: 20px; font-size: 1.15rem">
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >Revenue is driven by trading volume rather than by a
-                        promise of fixed returns.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >This creates predictable economics that scale with
-                        client participation.</span
-                      >
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span
-                        >It provides a clear rationale for a controlled pilot
-                        before broader rollout.</span
-                      >
-                    </li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="slide theme-amber"
-          id="slide-11"
-          data-title="Implementation"
-        >
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">11 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Implementation</div>
-              <h2 class="slide-title">
-                Start small, observe live, then scale with confidence.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 32px;
-              "
-            >
-              <div class="timeline" style="gap: 24px">
-                <article class="timeline-step" style="min-height: auto">
-                  <span class="timeline-badge" style="margin-bottom: 8px"
-                    >1</span
-                  >
-                  <h3 style="font-size: 1.05rem">Pilot allocation</h3>
-                  <p style="font-size: 1.05rem">
-                    Begin with a pilot allocation of <strong>$50,000</strong> so
-                    the partnership can validate the process in a controlled
-                    way.
-                  </p>
-                </article>
-                <article class="timeline-step" style="min-height: auto">
-                  <span class="timeline-badge" style="margin-bottom: 8px"
-                    >2</span
-                  >
-                  <h3 style="font-size: 1.05rem">Observation window</h3>
-                  <p style="font-size: 1.05rem">
-                    Use a <strong>60–90 day</strong> review period to evaluate
-                    execution quality, reporting cadence, and fit for the client
-                    base.
-                  </p>
-                </article>
-                <article class="timeline-step" style="min-height: auto">
-                  <span class="timeline-badge" style="margin-bottom: 8px"
-                    >3</span
-                  >
-                  <h3 style="font-size: 1.05rem">Broader rollout</h3>
-                  <p style="font-size: 1.05rem">
-                    If the pilot validates, expand with a clearer message,
-                    cleaner proof, and lower resistance from stakeholders.
-                  </p>
-                </article>
-              </div>
-
-              <div class="grid-2" style="align-items: stretch; gap: 24px">
-                <article
-                  class="panel"
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding: 20px 24px;
-                  "
-                >
-                  <h3 style="font-size: 1.05rem; margin-bottom: 16px">
-                    What Gain provides
-                  </h3>
-                  <ul class="check-list" style="gap: 16px; font-size: 1.05rem">
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span>Client-facing materials</span>
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span>Compliance documentation</span>
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span>Sales briefing support</span>
-                    </li>
-                    <li>
-                      <span class="bullet" style="margin-top: 0.45em"></span
-                      ><span>Ongoing reporting</span>
-                    </li>
-                  </ul>
-                </article>
-
-                <article
-                  class="accent-card"
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding: 20px 24px;
-                  "
-                >
-                  <p class="metric-label" style="margin-bottom: 16px">
-                    Our approach
-                  </p>
-                  <p
-                    style="
-                      font-size: 1.1rem;
-                      line-height: 1.4;
-                      margin: 0;
-                      color: var(--neutral-900);
-                    "
-                  >
-                    We believe in proving the model live before asking for a
-                    large commitment. The pilot ensures alignment and builds
-                    trust.
-                  </p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="slide theme-dark" id="slide-12" data-title="Closing">
-          <div class="slide-grid">
-            <div class="slide-header">
-              <img
-                src="./logo/main_logo.png"
-                alt="Gain"
-                class="slide-logo logo-light"
-              />
-              <img
-                src="./logo/white_logo.png"
-                alt="Gain"
-                class="slide-logo logo-dark"
-              />
-              <span class="slide-index">12 / 12</span>
-            </div>
-            <div class="slide-content-header">
-              <div class="eyebrow">Closing</div>
-              <h2 class="slide-title">
-                Clear structure. Aligned incentives. A simple next step.
-              </h2>
-            </div>
-
-            <div
-              style="
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-              "
-            >
-              <div class="closing-grid" style="gap: 24px; align-items: stretch">
-                <article
-                  class="panel"
-                  style="
-                    padding: 24px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                  "
-                >
-                  <div>
-                    <h3 style="font-size: 1.2rem; margin-bottom: 16px">
-                      In Summary
-                    </h3>
-                    <ul
-                      class="check-list"
-                      style="gap: 20px; font-size: 0.95rem"
-                    >
-                      <li>
-                        <span class="bullet" style="margin-top: 0.45em"></span
-                        ><span
-                          >Clients keep full ownership of capital in regulated
-                          brokerage accounts.</span
-                        >
-                      </li>
-                      <li>
-                        <span class="bullet" style="margin-top: 0.45em"></span
-                        ><span
-                          >Gain provides systematic execution, external
-                          tracking, and disciplined risk structure.</span
-                        >
-                      </li>
-                      <li>
-                        <span class="bullet" style="margin-top: 0.45em"></span
-                        ><span
-                          >Fisherman gets a partner offering that is
-                          understandable, differentiated, and economically
-                          attractive.</span
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    class="cta-strip"
-                    style="margin-top: 32px; padding: 24px"
-                  >
-                    <strong style="font-size: 1.1rem">Next steps</strong>
-                    <span style="font-size: 1.1rem"
-                      >Agree on pilot structure, review compliance
-                      documentation, and confirm rollout timeline.</span
-                    >
-                  </div>
-                </article>
-
-                <aside
-                  class="contact-card"
-                  style="
-                    padding: 24px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    gap: 24px;
-                  "
-                >
-                  <div>
-                    <p class="metric-label" style="margin-bottom: 8px">
-                      Contact
-                    </p>
-                    <p class="contact-value" style="font-size: 1.4rem">
-                      Robert P. McDonell
-                    </p>
-                    <p style="font-size: 1.1rem; opacity: 0.8">
-                      Founder &amp; CEO, Gain Inc.
-                    </p>
-                  </div>
-                  <div style="margin-top: 16px">
-                    <p style="margin-bottom: 16px">
-                      <span class="metric-label">Email</span><br /><span
-                        class="contact-value"
-                        style="font-size: 1.1rem"
-                        >robert@gain.inc</span
-                      >
-                    </p>
-                    <p style="margin-bottom: 16px">
-                      <span class="metric-label">Calendar</span><br /><span
-                        class="contact-value"
-                        style="font-size: 1.1rem"
-                        >calendly.com/robert-mcdonell</span
-                      >
-                    </p>
-                    <p>
-                      <span class="metric-label">Telephone &amp; WhatsApp</span
-                      ><br /><span
-                        class="contact-value"
-                        style="font-size: 1.1rem"
-                        >+503 7296 5564</span
-                      >
-                    </p>
-                  </div>
-                </aside>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+      <p class="footer">Gain Inc.</p>
     </div>
 
     <script>
-      const slides = Array.from(document.querySelectorAll(".slide"));
-      const progressNav = document.getElementById("progress-nav");
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      let activeIndex = 0;
+      const toggle = document.getElementById("partner-decks-toggle");
+      const list = document.getElementById("partner-deck-list");
 
-      function scrollToSlide(index) {
-        const boundedIndex = Math.max(0, Math.min(slides.length - 1, index));
-        slides[boundedIndex].scrollIntoView({
-          behavior: prefersReducedMotion ? "auto" : "smooth",
-          block: "center",
-        });
-      }
-
-      function updateActive(index) {
-        activeIndex = index;
-        Array.from(progressNav.children).forEach((dot, dotIndex) => {
-          dot.classList.toggle("active", dotIndex === index);
-          dot.setAttribute(
-            "aria-current",
-            dotIndex === index ? "true" : "false",
-          );
-        });
-      }
-
-      slides.forEach((slide, index) => {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "progress-dot";
-        dot.setAttribute(
-          "aria-label",
-          `Go to slide ${index + 1}: ${slide.dataset.title}`,
-        );
-        dot.title = `${index + 1}. ${slide.dataset.title}`;
-        dot.addEventListener("click", () => scrollToSlide(index));
-        progressNav.appendChild(dot);
+      toggle.addEventListener("click", () => {
+        const expanded = list.classList.toggle("visible");
+        toggle.setAttribute("aria-expanded", String(expanded));
       });
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const clientToggle = document.getElementById("client-decks-toggle");
+      const clientList = document.getElementById("client-deck-list");
 
-          if (!visible) {
-            return;
-          }
-
-          updateActive(slides.indexOf(visible.target));
-        },
-        {
-          threshold: [0.45, 0.65, 0.85],
-        },
-      );
-
-      slides.forEach((slide) => observer.observe(slide));
-      updateActive(0);
-
-      document.getElementById("prev-slide").addEventListener("click", () => {
-        scrollToSlide(activeIndex - 1);
-      });
-
-      document.getElementById("next-slide").addEventListener("click", () => {
-        scrollToSlide(activeIndex + 1);
-      });
-
-      window.addEventListener("keydown", (event) => {
-        if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(event.key)) {
-          event.preventDefault();
-          scrollToSlide(activeIndex + 1);
-        }
-
-        if (["ArrowLeft", "ArrowUp", "PageUp"].includes(event.key)) {
-          event.preventDefault();
-          scrollToSlide(activeIndex - 1);
-        }
-
-        if (
-          event.key.toLowerCase() === "p" &&
-          (event.metaKey || event.ctrlKey)
-        ) {
-          document.body.classList.add("pdf-export-mode");
-        }
-      });
-
-      window.addEventListener("beforeprint", () => {
-        document.body.classList.add("pdf-export-mode");
-      });
-
-      window.addEventListener("afterprint", () => {
-        document.body.classList.remove("pdf-export-mode");
+      clientToggle.addEventListener("click", () => {
+        const expanded = clientList.classList.toggle("visible");
+        clientToggle.setAttribute("aria-expanded", String(expanded));
       });
     </script>
   </body>
