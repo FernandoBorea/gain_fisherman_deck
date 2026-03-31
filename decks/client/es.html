@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gain Deck Clientes (ES)</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/deck-core.css" />
+    <link rel="stylesheet" href="./client-deck.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+  <body>
+    <a href="../../index.html" class="home-nav no-print" aria-label="Back to decks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </a>
+    <div class="controls no-print">
+      <button class="control-button secondary" type="button" id="prev-slide">
+        Anterior
+      </button>
+      <button class="control-button secondary" type="button" id="next-slide">
+        Siguiente
+      </button>
+      <!-- Print / Save PDF — restore when ready
+      <button class="control-button" type="button" id="print-deck">
+        Print / Save PDF
+      </button>
+      -->
+    </div>
+
+    <div
+      class="progress no-print"
+      id="progress-nav"
+      aria-label="Slide progress"
+    ></div>
+
+    <div class="shell">
+      <main class="deck" id="deck">
+
+        <!-- Slide 1: Cover -->
+        <section class="slide theme-dark" id="slide-1" data-title="Portada">
+          <div class="slide-grid" style="display: flex; flex-direction: column">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="date-stamp">Marzo 2026</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Resumen para Clientes</div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-grow: 1;
+                gap: 32px;
+              "
+            >
+              <h1 class="hero-title" style="max-width: 16ch">
+                Wealth, Powered by Code.
+              </h1>
+              <p class="hero-subtitle">
+                Gain ofrece gestión sistemática de capital dentro de tu propia cuenta de corretaje.
+              </p>
+              <div class="pills">
+                <span class="pill">Mantienes tu cuenta</span>
+                <span class="pill">Nosotros gestionamos la ejecución</span>
+                <span class="pill">Monitorea en tiempo real</span>
+              </div>
+            </div>
+
+            <div class="footer-note" style="margin-top: auto">
+              <div style="font-size: 1.05rem; color: var(--neutral-0)">
+                <strong>Robert P. McDonell</strong>
+                <span style="opacity: 0.7; font-weight: normal">&mdash; Fundador y CEO, Gain Inc.</span>
+              </div>
+              <span>1 / 12</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 2: Our Service -->
+        <section class="slide theme-light" id="slide-2" data-title="Nuestro Servicio">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">2 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Nuestro Servicio</div>
+              <h2 class="slide-title" style="max-width: 30ch; font-size: clamp(1.8rem, 3vw, 3.2rem);">
+                Una asignación líquida y de baja correlación diseñada para comportarse de forma independiente a los activos tradicionales.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p style=" font-weight: 600; color: var(--neutral-700); margin: 0; max-width: 70ch;">
+                Gain ofrece gestión sistemática de capital dentro de tu propia cuenta de corretaje.
+              </p>
+              
+              <div class="grid-3" style="gap: 24px;">
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="cpu"></i>
+                  <div>
+                    <h4 style=" margin: 0 0 8px; color: var(--accent-700);">Ejecución Sistemática</h4>
+                    <p style=" margin: 0;">Ejecución sistemática sin emociones.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="user-x"></i>
+                  <div>
+                    <h4 style=" margin: 0 0 8px; color: var(--accent-700);">Sin Gestión Activa</h4>
+                    <p style=" margin: 0;">Nosotros ejecutamos, tú monitoreas.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="globe"></i>
+                  <div>
+                    <h4 style=" margin: 0 0 8px; color: var(--accent-700);">Mercados Globales</h4>
+                    <p style=" margin: 0;">FX, índices y metales.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 24px 32px; text-align: center; margin-top: 16px;">
+                <p style="margin: 0; font-family: var(--font-display);  font-weight: 600; letter-spacing: -0.02em;">
+                  Tu capital permanece en tu cuenta. Sin custodia. Sin bloqueos. Control total. Gain tiene únicamente autoridad de operación. Sin derechos de retiro.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 3: Track Record -->
+        <section class="slide theme-amber" id="slide-3" data-title="Historial">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">3 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Desempeño</div>
+              <h2 class="slide-title">
+                Historial y Verificación
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-3" style="gap: 24px;">
+                <div class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                  <i data-lucide="activity"></i>
+                  <span style="font-size: 1.15rem; font-weight: 600;">Operación en vivo desde 2020</span>
+                </div>
+                <div class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                  <i data-lucide="check-circle"></i>
+                  <span style="font-size: 1.15rem; font-weight: 600;">Verificado por terceros (Myfxbook)</span>
+                </div>
+                <div class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                  <i data-lucide="eye"></i>
+                  <span style="font-size: 1.15rem; font-weight: 600;">Transparencia en tiempo real</span>
+                </div>
+              </div>
+
+              <div>
+                <h3 style=" margin-bottom: 24px; color: var(--neutral-700); text-transform: uppercase; letter-spacing: 0.1em;">Retornos Anuales</h3>
+                <div class="grid-4" style="gap: 16px;">
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">39.55%</div>
+                    <div class="label">2026 YTD</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">132.9%</div>
+                    <div class="label">2025</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">19.0%</div>
+                    <div class="label">2024</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">6.0%</div>
+                    <div class="label">2023</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">23.5%</div>
+                    <div class="label">2022</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">64.1%</div>
+                    <div class="label">2021</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">6.3%</div>
+                    <div class="label">2020</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="footer-note">
+                <span>Datos externos — no auto reportados. Resultados ponderados en el tiempo y derivados de capital real.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 4: Why Gain -->
+        <section class="slide theme-light" id="slide-4" data-title="Por Qué Gain">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">4 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Por Qué Gain</div>
+              <h2 class="slide-title">
+                Por Qué Gain
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-2" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; ">
+                  <i data-lucide="droplets"></i>
+                  <div class="card-copy">
+                    <h3 style=" margin-bottom: 16px;">Totalmente Líquido</h3>
+                    <p style="font-size: 1.15rem;">Sin bloqueos. Puedes retirar tus fondos en cualquier momento.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; ">
+                  <i data-lucide="bar-chart-3"></i>
+                  <div class="card-copy">
+                    <h3 style=" margin-bottom: 16px;">Todos los Mercados</h3>
+                    <p style="font-size: 1.15rem;">Diseñado para operar en mercados alcistas y bajistas.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; ">
+                  <i data-lucide="git-compare-arrows"></i>
+                  <div class="card-copy">
+                    <h3 style=" margin-bottom: 16px;">Baja Correlación</h3>
+                    <p style="font-size: 1.15rem;">Baja correlación con activos tradicionales (~0.18 vs S&P 500).</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; ">
+                  <i data-lucide="gauge"></i>
+                  <div class="card-copy">
+                    <h3 style=" margin-bottom: 16px;">Rendimiento Ajustado al Riesgo</h3>
+                    <p style="font-size: 1.15rem;">Rendimiento consistente ajustado por riesgo (Sharpe >2.5 desde 2025).</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 32px; text-align: center;">
+                <p style="margin: 0; font-family: var(--font-display);  font-weight: 600; letter-spacing: -0.02em;">
+                  Una asignación líquida y de baja correlación diseñada para comportarse de forma independiente a los activos tradicionales.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 5: Portfolio Structure -->
+        <section class="slide theme-dark" id="slide-5" data-title="Estructura del Portafolio">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">5 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Estrategia</div>
+              <h2 class="slide-title">
+                Estructura del Portafolio
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="split-highlight" style="gap: 64px; align-items: stretch;">
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.03);">
+                  <div class="portfolio-card-head">
+                    <h3 style=" margin-bottom: 24px; color: var(--neutral-0); border-bottom: 2px solid rgba(246, 242, 238, 0.2); padding-bottom: 16px;">Portafolio Tradicional</h3>
+                  </div>
+                  <div class="portfolio-card-body">
+                    <ul class="simple-list" style="gap: 16px;  margin-bottom: 32px;">
+                      <li><i data-lucide="pie-chart"></i><span>Acciones</span></li>
+                      <li><i data-lucide="home"></i><span>Bienes Raíces</span></li>
+                      <li><i data-lucide="briefcase"></i><span>Negocios Privados</span></li>
+                    </ul>
+                    <div style="padding: 20px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.2);">
+                      <p style="margin: 0 0 8px; font-weight: 700; color: #fca5a5;">→ Dependiente del mercado</p>
+                      <p style="margin: 0; font-weight: 700; color: #fca5a5;">→ Correlacionado en caídas</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="panel" style="padding: 42px;  background: rgba(245, 158, 11, 0.05);">
+                  <div class="portfolio-card-head">
+                    <h3 style=" margin-bottom: 24px; color: var(--neutral-0); border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">Con Gain</h3>
+                  </div>
+                  <div class="portfolio-card-body">
+                    <ul class="simple-list" style="gap: 16px;  margin-bottom: 32px;">
+                      <li><i data-lucide="pie-chart"></i><span>Acciones</span></li>
+                      <li><i data-lucide="home"></i><span>Bienes Raíces</span></li>
+                      <li><i data-lucide="briefcase"></i><span>Negocios Privados</span></li>
+                      <li><i data-lucide="plus-circle"></i><strong style="color: var(--primary-500);">Gain</strong></li>
+                    </ul>
+                    <div style="padding: 20px; background: rgba(245, 158, 11, 0.15); border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                      <p style="margin: 0 0 8px; font-weight: 700; color: #ffd98a;">→ Líquido</p>
+                      <p style="margin: 0 0 8px; font-weight: 700; color: #ffd98a;">→ Impulsado por volatilidad</p>
+                      <p style="margin: 0; font-weight: 700; color: #ffd98a;">→ Estructuralmente diversificado</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div style="text-align: center;  font-weight: 600; color: rgba(246, 242, 238, 0.9);">
+                La mayoría de los portafolios se diversifican por activos, no por comportamiento.<br/>
+                <span style="color: #ffd98a;">Gain introduce verdadera diversificación conductual.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 6: Custody & Execution -->
+        <section class="slide theme-light" id="slide-6" data-title="Custodia y Ejecución">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">6 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Seguridad</div>
+              <h2 class="slide-title">
+                Custodia y Ejecución
+              </h2>
+            </div>
+
+            <div style="margin-top: 24px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-3" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <i data-lucide="user-check"></i>
+                  <h3 style=" margin-bottom: 16px;">Cuenta Regulada</h3>
+                  <p>El cliente abre una cuenta de corretaje regulada.</p>
+                </article>
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <i data-lucide="lock"></i>
+                  <h3 style=" margin-bottom: 16px;">Custodia del Cliente</h3>
+                  <p>Los fondos permanecen bajo custodia del cliente.</p>
+                </article>
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <i data-lucide="file-key"></i>
+                  <h3 style=" margin-bottom: 16px;">Operación LPOA</h3>
+                  <p>Gain opera mediante LPOA (solo operación).</p>
+                </article>
+              </div>
+
+              <div style="text-align: center;">
+                <h4 style=" color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;">Brókers compatibles</h4>
+                <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+                  <span class="pill" style=" padding: 12px 24px;">Pepperstone</span>
+                  <span class="pill" style=" padding: 12px 24px;">Axi</span>
+                  <span class="pill" style=" padding: 12px 24px;">Tradeview</span>
+                </div>
+              </div>
+
+              <div class="accent-card" style="padding: 24px; text-align: center; font-size: 1.25rem; font-weight: 500;">
+                Los fondos se mantienen en cuentas segregadas bajo supervisión regulatoria. La ejecución ocurre directamente dentro de tu cuenta de corretaje.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 7: Onboarding Process -->
+        <section class="slide theme-amber" id="slide-7" data-title="Proceso de Incorporación">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">7 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Cómo Empezar</div>
+              <h2 class="slide-title">
+                Proceso de Incorporación
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="timeline" style="gap: 32px; grid-template-columns: repeat(3, minmax(0, 1fr));">
+                <article class="panel" style="padding: 42px; position: relative;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 42px; width: 42px; height: 42px; ">1</span>
+                  <i data-lucide="user-plus" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Abrir Cuenta</h3>
+                  <p style="font-size: 1.15rem;">Abrir tu propia cuenta de corretaje con un bróker compatible.</p>
+                </article>
+                <article class="panel" style="padding: 42px; position: relative;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 42px; width: 42px; height: 42px; ">2</span>
+                  <i data-lucide="wallet" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Depositar Fondos</h3>
+                  <p style="font-size: 1.15rem;">Depositar fondos (USD, EUR, CHF).</p>
+                </article>
+                <article class="panel" style="padding: 42px; position: relative;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 42px; width: 42px; height: 42px; ">3</span>
+                  <i data-lucide="file-signature" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Autorizar Gain</h3>
+                  <p style="font-size: 1.15rem;">Firmar el LPOA para otorgar acceso de operación.</p>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 32px; text-align: center;">
+                <p style="margin: 0; font-family: var(--font-display); font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; color: var(--accent-700);">
+                  Gain se conecta y comienza la ejecución.<br/>
+                  <span style=" color: var(--neutral-700);">Simple. Estructurado. Totalmente gestionado.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 8: Fees -->
+        <section class="slide theme-dark" id="slide-8" data-title="Comisiones">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">8 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Alineación</div>
+              <h2 class="slide-title">
+                Comisiones
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1000px; width: 100%; align-items: stretch;">
+                
+                <div class="accent-card" style="padding: 48px; display: flex; flex-direction: column; justify-content: center; text-align: center; ">
+                  <div style="font-size: 6rem; font-weight: 900; line-height: 1; color: var(--accent-500); margin-bottom: 16px; letter-spacing: -0.04em;">25%</div>
+                  <p style="margin: 0;  font-weight: 700; color: var(--neutral-0);">Comisión de desempeño</p>
+                  <p style="margin: 12px 0 0;  color: rgba(246, 242, 238, 0.7);">sobre nuevas ganancias</p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x"></i>
+                    <span style=" font-weight: 600; color: var(--neutral-0);">Sin comisión de gestión</span>
+                  </div>
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x"></i>
+                    <span style=" font-weight: 600; color: var(--neutral-0);">Sin costos fijos</span>
+                  </div>
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x"></i>
+                    <span style=" font-weight: 600; color: var(--neutral-0);">Sin markups</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div style="text-align: center;  font-weight: 700; color: #ffd98a;">
+                Solo ganamos cuando tú ganas.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 9: Structure Advantage -->
+        <section class="slide theme-light" id="slide-9" data-title="Ventaja Estructural">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">9 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Ventaja</div>
+              <h2 class="slide-title">
+                Ventaja Estructural
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-2" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; display: flex; align-items: flex-start; gap: 24px;">
+                  <i data-lucide="user"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 12px;">Capital a tu nombre</h3>
+                    <p>Mantienes la propiedad legal completa de tus fondos.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; display: flex; align-items: flex-start; gap: 24px;">
+                  <i data-lucide="shield"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 12px;">Sin riesgo de fondo</h3>
+                    <p>Tu cuenta está aislada de otros inversores.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; display: flex; align-items: flex-start; gap: 24px;">
+                  <i data-lucide="unlock"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 12px;">Sin bloqueos</h3>
+                    <p>Sin retrasos de retiro. Accede a tu dinero cuando lo necesites.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; display: flex; align-items: flex-start; gap: 24px;">
+                  <i data-lucide="eye"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 12px;">Transparencia total</h3>
+                    <p>Ve cada operación, posición y balance en tiempo real.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 32px; text-align: center;  font-weight: 700; color: var(--accent-700);">
+                Tú controlas el capital. Gain ejecuta.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 10: Investor Fit -->
+        <section class="slide theme-amber" id="slide-10" data-title="Perfil del Inversionista">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">10 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Perfil</div>
+              <h2 class="slide-title">
+                ¿Es adecuado para ti?
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-3" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; ">
+                  <h3 style=" margin-bottom: 16px;">Paciencia</h3>
+                  <p style="font-size: 1.15rem;">Evaluar el desempeño en el tiempo, no mensualmente.</p>
+                </article>
+                <article class="panel" style="padding: 42px; ">
+                  <h3 style=" margin-bottom: 16px;">Tolerancia al Riesgo</h3>
+                  <p style="font-size: 1.15rem;">Los drawdowns son parte normal del proceso.</p>
+                </article>
+                <article class="panel" style="padding: 42px;  background: rgba(245, 158, 11, 0.05);">
+                  <h3 style=" margin-bottom: 16px; color: var(--accent-700);">Ejemplo</h3>
+                  <p style="font-size: 1.15rem; margin-bottom: 8px;"><strong>Retorno 2025:</strong> +133%</p>
+                  <p style="font-size: 1.15rem; margin: 0;"><strong>Drawdown máximo:</strong> ~30%</p>
+                </article>
+              </div>
+
+              <div style="text-align: center;  font-weight: 600; color: var(--neutral-700);">
+                La estrategia premia la disciplina, no la reacción.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 11: Next Step -->
+        <section class="slide theme-light" id="slide-11" data-title="Siguiente Paso">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">11 / 12</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Implementación</div>
+              <h2 class="slide-title">
+                Siguiente Paso
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px; align-items: center; text-align: center;">
+              <p class="next-step-lead" style=" font-weight: 600; max-width: 40ch; margin: 0;">
+                Comenzar con una asignación controlada y evaluar el desempeño en condiciones reales.
+              </p>
+
+              <div class="next-step-steps">
+                <div class="next-step-step">
+                  <i data-lucide="user-plus"></i>
+                  <div>
+                    <strong>Abrir cuenta</strong>
+                    <span>Crea tu cuenta de corretaje</span>
+                  </div>
+                </div>
+                <div class="next-step-step">
+                  <i data-lucide="wallet"></i>
+                  <div>
+                    <strong>Depositar fondos</strong>
+                    <span>Realiza el deposito inicial</span>
+                  </div>
+                </div>
+                <div class="next-step-step">
+                  <i data-lucide="file-signature"></i>
+                  <div>
+                    <strong>Activar LPOA</strong>
+                    <span>Autoriza a Gain para ejecutar</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="next-step-brokers" style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+                <span class="pill" style=" padding: 16px 32px; background: white;">Pepperstone</span>
+                <span class="pill" style=" padding: 16px 32px; background: white;">Axi</span>
+                <span class="pill" style=" padding: 16px 32px; background: white;">Tradeview</span>
+              </div>
+
+              <div class="accent-card" style="padding: 32px 48px; margin-top: 24px;">
+                <p style="margin: 0; font-family: var(--font-display); font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; color: var(--accent-700);">
+                  Un enfoque disciplinado y transparente hacia la gestión sistemática de capital.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 12: Contact -->
+        <section class="slide theme-dark" id="slide-12" data-title="Contacto">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">12 / 12</span>
+            </div>
+            
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 64px;">
+              <div>
+                <h2 style="margin: 0 0 16px; font-family: var(--font-display); font-size: clamp(4rem, 6vw, 6rem); line-height: 1; letter-spacing: -0.04em;">
+                  Gain
+                </h2>
+                <p style="margin: 0;  color: #ffd98a; font-weight: 600;">
+                  Wealth, Powered by Code
+                </p>
+              </div>
+
+              <div class="grid-2" style="gap: 32px; max-width: 900px;">
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.05); border: 1px solid rgba(246, 242, 238, 0.1);">
+                  <h3 style=" margin-bottom: 8px; color: var(--neutral-0);">Robert P. McDonell</h3>
+                  <p style=" color: rgba(246, 242, 238, 0.7); margin-bottom: 24px;">Fundador y CEO, Gain Inc.</p>
+                  
+                  <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <i data-lucide="mail"></i>
+                      <a href="mailto:robert@gain.inc" style="font-size: 1.15rem; color: var(--neutral-0); text-decoration: none;">robert@gain.inc</a>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <i data-lucide="calendar"></i>
+                      <a href="https://calendly.com/robert-mcdonell" target="_blank" style="font-size: 1.15rem; color: var(--neutral-0); text-decoration: none;">calendly.com/robert-mcdonell</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="panel cta-card" style="padding: 36px; background: rgba(246, 242, 238, 0.03);">
+                  <div>
+                    <h3 style="margin-bottom: 10px; color: var(--neutral-0);">Listo para comenzar?</h3>
+                    <p style="margin: 0; color: rgba(246, 242, 238, 0.75); line-height: 1.45;">
+                      Abre tu cuenta de corretaje, deposita fondos y te guiamos en la configuración del LPOA.
+                    </p>
+                  </div>
+                  <a class="cta-link" href="https://calendly.com/robert-mcdonell" target="_blank" rel="noreferrer">
+                    Agendar llamada inicial
+                  </a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+</main>
+    </div>
+
+    <script src="../shared/deck-runtime.js"></script>
+  </body>
+</html>

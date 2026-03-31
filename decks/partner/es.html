@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gain Deck Socios (ES)</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/deck-core.css" />
+    <link rel="stylesheet" href="./partner-deck.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+  <body>
+    <a href="../../index.html" class="home-nav no-print" aria-label="Back to decks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </a>
+    <div class="controls no-print">
+      <button class="control-button secondary" type="button" id="prev-slide">
+        Anterior
+      </button>
+      <button class="control-button secondary" type="button" id="next-slide">
+        Siguiente
+      </button>
+      <!-- Print / Save PDF — restore when ready
+      <button class="control-button" type="button" id="print-deck">
+        Print / Save PDF
+      </button>
+      -->
+    </div>
+
+    <div
+      class="progress no-print"
+      id="progress-nav"
+      aria-label="Slide progress"
+    ></div>
+
+    <div class="shell">
+      <main class="deck" id="deck">
+
+        <!-- Slide 1: Cover -->
+        <section class="slide theme-dark" id="slide-1" data-title="Portada">
+          <div class="slide-grid" style="display: flex; flex-direction: column">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="date-stamp">Marzo 2026</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Resumen de Alianza</div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-grow: 1;
+                gap: 32px;
+              "
+            >
+              <h1 class="hero-title" style="max-width: 16ch">
+                Wealth, Powered by Code.
+              </h1>
+              <p class="hero-subtitle">
+                Gestión Sistemática de Capital - Resumen de Alianza
+              </p>
+            </div>
+
+            <div class="footer-note" style="margin-top: auto">
+              <div style="font-size: 1.05rem; color: var(--neutral-0)">
+                <strong>Robert P. McDonell</strong>
+                <span style="opacity: 0.7; font-weight: normal">&mdash; Fundador y CEO, Gain Inc.</span>
+              </div>
+              <span>1 / 16</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 2: Our Service -->
+        <section class="slide theme-light" id="slide-2" data-title="Nuestro Servicio">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">2 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Nuestro Servicio</div>
+              <h2 class="slide-title" style="max-width: 35ch; font-size: clamp(1.8rem, 3vw, 3.2rem);">
+                Una asignación líquida y de baja correlación diseñada para comportarse de manera independiente a los activos tradicionales.
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p style=" font-weight: 600; color: var(--neutral-700); margin: 0; max-width: 60ch;">
+                Gain ofrece gestión sistemática de capital mediante ejecución sistemática dentro de cuentas de corretaje a nombre del cliente.
+              </p>
+              
+              <div class="grid-3" style="gap: 24px;">
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="cpu"></i>
+                  <div>
+                    <h4 style=" margin: 0 0 8px; color: var(--accent-700);">Ejecución Sistemática</h4>
+                    <p style=" margin: 0;">Ejecución sistemática sin emociones.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="user-x"></i>
+                  <div>
+                    <h4 style=" margin: 0 0 8px; color: var(--accent-700);">Sin Gestión Activa</h4>
+                    <p style=" margin: 0;">Sin participación del cliente.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px; display: flex; flex-direction: column; gap: 12px;">
+                  <i data-lucide="globe"></i>
+                  <div>
+                    <h4 style=" margin: 0 0 8px; color: var(--accent-700);">Mercados Globales</h4>
+                    <p style=" margin: 0;">FX, índices y metales.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 24px 32px; text-align: center; margin-top: 16px;">
+                <p style="margin: 0; font-family: var(--font-display);  font-weight: 600; letter-spacing: -0.02em;">
+                  Tu capital permanece en tu cuenta. Sin custodia. Sin bloqueos. Control total. Gain tiene únicamente autoridad de operación. Sin derechos de retiro.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 3: Track Record -->
+        <section class="slide theme-amber" id="slide-3" data-title="Historial">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">3 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Desempeño</div>
+              <h2 class="slide-title">
+                Historial y Verificación
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-3" style="gap: 24px;">
+                <div class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                  <i data-lucide="activity"></i>
+                  <span style="font-size: 1.15rem; font-weight: 600;">Operación en vivo desde 2020</span>
+                </div>
+                <div class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                  <i data-lucide="check-circle"></i>
+                  <span style="font-size: 1.15rem; font-weight: 600;">Verificado por terceros (Myfxbook)</span>
+                </div>
+                <div class="panel" style="padding: 24px; display: flex; align-items: center; gap: 16px;">
+                  <i data-lucide="eye"></i>
+                  <span style="font-size: 1.15rem; font-weight: 600;">Transparencia en tiempo real</span>
+                </div>
+              </div>
+
+              <div>
+                <h3 style=" margin-bottom: 24px; color: var(--neutral-700); text-transform: uppercase; letter-spacing: 0.1em;">Retornos Anuales</h3>
+                <div class="grid-4" style="gap: 16px;">
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">39.55%</div>
+                    <div class="label">2026 YTD</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">132.9%</div>
+                    <div class="label">2025</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">19.0%</div>
+                    <div class="label">2024</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">6.0%</div>
+                    <div class="label">2023</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">23.5%</div>
+                    <div class="label">2022</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">64.1%</div>
+                    <div class="label">2021</div>
+                  </div>
+                  <div class="big-stat-card" style="padding: 24px;">
+                    <div class="stat" style="font-size: 2.2rem;">6.3%</div>
+                    <div class="label">2020</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="footer-note">
+                <span>Datos externos — no auto reportados. Resultados ponderados en el tiempo y derivados de capital real.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 4: Why Gain -->
+        <section class="slide theme-light" id="slide-4" data-title="Por Qué Gain">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">4 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Por Qué Gain</div>
+              <h2 class="slide-title">
+                Por Qué Gain
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-2" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; ">
+                  <div class="why-card-head"><i data-lucide="droplets"></i><h3 style=" margin: 0;">Totalmente Líquido</h3></div>
+                  <p style="font-size: 1.15rem;">Sin bloqueos. Puedes retirar tus fondos en cualquier momento.</p>
+                </article>
+                <article class="panel" style="padding: 42px; ">
+                  <div class="why-card-head"><i data-lucide="bar-chart-3"></i><h3 style=" margin: 0;">Todos los Mercados</h3></div>
+                  <p style="font-size: 1.15rem;">Diseñado para operar en mercados alcistas y bajistas.</p>
+                </article>
+                <article class="panel" style="padding: 42px; ">
+                  <div class="why-card-head"><i data-lucide="git-compare-arrows"></i><h3 style=" margin: 0;">Baja Correlación</h3></div>
+                  <p style="font-size: 1.15rem;">Baja correlación con activos tradicionales (~0.18 vs S&P 500).</p>
+                </article>
+                <article class="panel" style="padding: 42px; ">
+                  <div class="why-card-head"><i data-lucide="gauge"></i><h3 style=" margin: 0;">Rendimiento Ajustado al Riesgo</h3></div>
+                  <p style="font-size: 1.15rem;">Rendimiento consistente ajustado por riesgo (Sharpe >2.5 desde 2025).</p>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 32px; text-align: center;">
+                <p style="margin: 0; font-family: var(--font-display);  font-weight: 600; letter-spacing: -0.02em;">
+                  Una estrategia líquida y de baja correlación diseñada para comportarse de forma independiente a los mercados tradicionales.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 5: Portfolio Context -->
+        <section class="slide theme-dark" id="slide-5" data-title="Contexto del Portafolio">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">5 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Estrategia</div>
+              <h2 class="slide-title">
+                Contexto del Portafolio
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="split-highlight" style="gap: 64px; align-items: stretch;">
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.03);">
+                  <div class="portfolio-card-head">
+                    <h3 style=" margin-bottom: 24px; color: var(--neutral-0); border-bottom: 2px solid rgba(246, 242, 238, 0.2); padding-bottom: 16px;">Portafolio Tradicional</h3>
+                  </div>
+                  <div class="portfolio-card-body">
+                    <ul class="simple-list" style="gap: 16px;  margin-bottom: 32px;">
+                      <li><i data-lucide="pie-chart"></i><span>Acciones</span></li>
+                      <li><i data-lucide="home"></i><span>Bienes Raíces</span></li>
+                      <li><i data-lucide="briefcase"></i><span>Negocios Privados</span></li>
+                    </ul>
+                    <div style="padding: 20px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.2);">
+                      <p style="margin: 0 0 8px; font-weight: 700; color: #fca5a5;">→ Dependiente del mercado</p>
+                      <p style="margin: 0; font-weight: 700; color: #fca5a5;">→ Correlacionado en caídas</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="panel" style="padding: 42px;  background: rgba(245, 158, 11, 0.05);">
+                  <div class="portfolio-card-head">
+                    <h3 style=" margin-bottom: 24px; color: var(--neutral-0); border-bottom: 2px solid rgba(245, 158, 11, 0.3); padding-bottom: 16px;">Con Gain</h3>
+                  </div>
+                  <div class="portfolio-card-body">
+                    <ul class="simple-list" style="gap: 16px;  margin-bottom: 32px;">
+                      <li><i data-lucide="pie-chart"></i><span>Acciones</span></li>
+                      <li><i data-lucide="home"></i><span>Bienes Raíces</span></li>
+                      <li><i data-lucide="briefcase"></i><span>Negocios Privados</span></li>
+                      <li><i data-lucide="plus-circle"></i><strong style="color: var(--primary-500);">Gain</strong></li>
+                    </ul>
+                    <div style="padding: 20px; background: rgba(245, 158, 11, 0.15); border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                      <p style="margin: 0 0 8px; font-weight: 700; color: #ffd98a;">→ Líquido</p>
+                      <p style="margin: 0 0 8px; font-weight: 700; color: #ffd98a;">→ Impulsado por volatilidad</p>
+                      <p style="margin: 0; font-weight: 700; color: #ffd98a;">→ Estructuralmente diversificado</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 6: Custody & Execution -->
+        <section class="slide theme-light" id="slide-6" data-title="Custodia y Ejecución">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">6 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Seguridad</div>
+              <h2 class="slide-title">
+                Custodia y Ejecución
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p style=" font-weight: 600; color: var(--neutral-700); margin: 0;">
+                El capital del cliente se mantiene en cuentas de corretaje reguladas de terceros — no en Gain.
+              </p>
+
+              <div class="grid-3" style="gap: 32px;">
+                <article class="panel" style="padding: 32px;">
+                  <div class="info-card-head">
+                    <h3 style=" margin-bottom: 16px; color: var(--accent-700);">Estructura</h3>
+                  </div>
+                  <div class="info-card-body">
+                    <ul class="simple-list" style="gap: 12px; ">
+                      <li><i data-lucide="check"></i><span>Cuenta a nombre del cliente</span></li>
+                      <li><i data-lucide="check"></i><span>Custodia total en todo momento</span></li>
+                      <li><i data-lucide="check"></i><span>LPOA (solo operación)</span></li>
+                      <li><i data-lucide="check"></i><span>Sin derechos de retiro</span></li>
+                    </ul>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px;">
+                  <div class="info-card-head">
+                    <h3 style=" margin-bottom: 16px; color: var(--accent-700);">Protección y Regulación</h3>
+                  </div>
+                  <div class="info-card-body">
+                    <ul class="simple-list" style="gap: 12px; ">
+                      <li><i data-lucide="shield"></i><span>ASIC, FCA, BaFin, CySEC, DFSA</span></li>
+                      <li><i data-lucide="shield"></i><span>Fondos segregados</span></li>
+                    </ul>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 32px;">
+                  <div class="info-card-head">
+                    <h3 style=" margin-bottom: 16px; color: var(--accent-700);">Ejecución</h3>
+                  </div>
+                  <div class="info-card-body">
+                    <ul class="simple-list" style="gap: 12px; ">
+                      <li><i data-lucide="zap"></i><span>STP / sin mesa de dinero</span></li>
+                      <li><i data-lucide="zap"></i><span>Liquidez institucional</span></li>
+                      <li><i data-lucide="zap"></i><span>Miles de millones en volumen</span></li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+
+              <div style="text-align: center;">
+                <h4 style=" color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;">Brókers</h4>
+                <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+                  <span class="pill" style=" padding: 12px 24px;">Pepperstone</span>
+                  <span class="pill" style=" padding: 12px 24px;">Axi</span>
+                  <span class="pill" style=" padding: 12px 24px;">Tradeview</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 7: Onboarding -->
+        <section class="slide theme-amber" id="slide-7" data-title="Incorporación">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">7 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Cómo Empezar</div>
+              <h2 class="slide-title">
+                Incorporación
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="timeline" style="gap: 32px; grid-template-columns: repeat(3, minmax(0, 1fr));">
+                <article class="panel" style="padding: 42px; position: relative;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 42px; width: 42px; height: 42px; ">1</span>
+                  <i data-lucide="user-plus" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Abrir Cuenta</h3>
+                  <p style="font-size: 1.15rem;">Abrir cuenta de corretaje.</p>
+                </article>
+                <article class="panel" style="padding: 42px; position: relative;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 42px; width: 42px; height: 42px; ">2</span>
+                  <i data-lucide="wallet" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Depositar Fondos</h3>
+                  <p style="font-size: 1.15rem;">Depositar fondos (USD, EUR, CHF).</p>
+                </article>
+                <article class="panel" style="padding: 42px; position: relative;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 42px; width: 42px; height: 42px; ">3</span>
+                  <i data-lucide="file-signature" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Autorizar Gain</h3>
+                  <p style="font-size: 1.15rem;">Autorizar Gain (LPOA).</p>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 32px; text-align: center;">
+                <p style="margin: 0; font-family: var(--font-display); font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; color: var(--accent-700);">
+                  Gain se conecta y comienza la ejecución.<br/>
+                  <span style=" color: var(--neutral-700);">Simple. Estructurado. Totalmente gestionado.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 8: Fee Structure -->
+        <section class="slide theme-dark" id="slide-8" data-title="Estructura de Comisiones">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">8 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Alineación</div>
+              <h2 class="slide-title">
+                Estructura de Comisiones
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1000px; width: 100%; align-items: stretch;">
+                
+                <div class="accent-card" style="padding: 48px; display: flex; flex-direction: column; justify-content: center; text-align: center; ">
+                  <div style="font-size: 6rem; font-weight: 900; line-height: 1; color: var(--accent-500); margin-bottom: 16px; letter-spacing: -0.04em;">25%</div>
+                  <p style="margin: 0;  font-weight: 700; color: var(--neutral-0);">Comisión de desempeño</p>
+                  <p style="margin: 12px 0 0;  color: rgba(246, 242, 238, 0.7);">sobre nuevas ganancias</p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x"></i>
+                    <span style=" font-weight: 600; color: var(--neutral-0);">Sin comisión de gestión</span>
+                  </div>
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x"></i>
+                    <span style=" font-weight: 600; color: var(--neutral-0);">Sin costos fijos</span>
+                  </div>
+                  <div class="panel" style="padding: 24px 32px; display: flex; align-items: center; gap: 16px; background: rgba(246, 242, 238, 0.03);">
+                    <i data-lucide="x"></i>
+                    <span style=" font-weight: 600; color: var(--neutral-0);">Sin markups</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div style="text-align: center;  font-weight: 700; color: #ffd98a;">
+                Solo ganamos cuando el cliente gana.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 9: Partnership Opportunity -->
+        <section class="slide theme-light" id="slide-9" data-title="Oportunidad de Alianza">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">9 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Oportunidad</div>
+              <h2 class="slide-title">
+                Oportunidad de Alianza
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-2" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <i data-lucide="briefcase"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 16px;">Baja carga operativa</h3>
+                    <p>Incorporación de socios rápida y mínima carga administrativa.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <i data-lucide="trending-up"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 16px;">Alta escalabilidad de ingresos</h3>
+                    <p>Los ingresos crecen con el AUM y el desempeño validado.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <i data-lucide="bar-chart"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 16px;">Impulsado por desempeño</h3>
+                    <p>La economía se alinea a resultados, no a volumen de actividad.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; text-align: center;">
+                  <i data-lucide="handshake"></i>
+                  <div class="panel-copy">
+                    <h3 style=" margin-bottom: 16px;">Totalmente alineado</h3>
+                    <p>Clientes, socios y Gain participan en un modelo alineado.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 32px; text-align: center;  font-weight: 700; color: var(--accent-700);">
+                Gain no es solo una solución de inversión, es un modelo de ingresos impulsado por desempeño.<br/>
+                Los socios participan en el mismo motor económico que impulsa a Gain.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 10: Economía del Socio -->
+        <section class="slide theme-amber" id="slide-10" data-title="Economía del Socio">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">10 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Economía</div>
+              <h2 class="slide-title">
+                Economía del Socio
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p style=" font-weight: 600; color: var(--neutral-700); margin: 0;">
+                La compensación proviene de la comisión por desempeño de Gain, sin costo adicional para el cliente.
+              </p>
+
+              <div>
+                <h3 style=" margin-bottom: 24px; color: var(--accent-700);">Tramos de Participación</h3>
+                <div class="econ-kpi-grid">
+                  <div class="econ-kpi-card">
+                    <span class="kpi-label">Entrada del socio</span>
+                    <span class="kpi-value">$0 AUM</span>
+                  </div>
+                  <div class="econ-kpi-card">
+                    <span class="kpi-label">Fuente de comisión</span>
+                    <span class="kpi-value">25% comisión por desempeño</span>
+                  </div>
+                  <div class="econ-kpi-card">
+                    <span class="kpi-label">Participación máxima</span>
+                    <span class="kpi-value">40%</span>
+                  </div>
+                </div>
+                <div class="tier-grid">
+                  <div class="tier-card">
+                    <i data-lucide="sprout" class="tier-icon"></i>
+                    <span class="tier-range">$0 – $500k</span>
+                    <span class="tier-share">20%</span>
+                  </div>
+                  <div class="tier-card">
+                    <i data-lucide="trending-up" class="tier-icon"></i>
+                    <span class="tier-range">$500k – $2M</span>
+                    <span class="tier-share">25%</span>
+                  </div>
+                  <div class="tier-card">
+                    <i data-lucide="bar-chart-3" class="tier-icon"></i>
+                    <span class="tier-range">$2M – $10M</span>
+                    <span class="tier-share">30%</span>
+                  </div>
+                  <div class="tier-card">
+                    <i data-lucide="rocket" class="tier-icon"></i>
+                    <span class="tier-range">$10M – $25M</span>
+                    <span class="tier-share">35%</span>
+                  </div>
+                  <div class="tier-card">
+                    <i data-lucide="crown" class="tier-icon"></i>
+                    <span class="tier-range">$25M+</span>
+                    <span class="tier-share">40%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="text-align: center;  font-weight: 600; color: var(--neutral-500);">
+                La participación aumenta con el crecimiento del AUM.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 11: Modelo de Ingresos -->
+        <section class="slide theme-dark" id="slide-11" data-title="Modelo de Ingresos">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">11 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Economía</div>
+              <h2 class="slide-title">
+                Modelo de Ingresos
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="accent-card" style="padding: 32px; text-align: center;">
+                <p style="margin: 0; font-family: var(--font-display);  font-weight: 600; color: var(--accent-500);">
+                  Ingresos del socio = AUM × Rendimiento × 25% × Tu Participación
+                </p>
+                <div class="formula-row" style="margin-top: 18px;">
+                  <div class="formula-chip">AUM</div>
+                  <span class="formula-op">×</span>
+                  <div class="formula-chip">Rendimiento</div>
+                  <span class="formula-op">×</span>
+                  <div class="formula-chip">Participación</div>
+                </div>
+              </div>
+
+              <div class="grid-3" style="gap: 24px;">
+                <div class="panel" style="padding: 24px; text-align: center; background: rgba(246, 242, 238, 0.03);">
+                  <i data-lucide="activity"></i>
+                  <span style=" font-weight: 600;">Sin dependencia del volumen de operación</span>
+                </div>
+                <div class="panel" style="padding: 24px; text-align: center; background: rgba(246, 242, 238, 0.03);">
+                  <i data-lucide="sliders-horizontal"></i>
+                  <span style=" font-weight: 600;">Sin supuestos fijos</span>
+                </div>
+                <div class="panel" style="padding: 24px; text-align: center; background: rgba(246, 242, 238, 0.03);">
+                  <i data-lucide="line-chart"></i>
+                  <span style=" font-weight: 600;">Escala con capital y rendimiento</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 12: Ejemplo de Ingresos -->
+        <section class="slide theme-dark" id="slide-12" data-title="Ejemplo de Ingresos">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">12 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Economía</div>
+              <h2 class="slide-title">
+                Ejemplo Práctico
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 28px;">
+              <div class="panel" style="padding: 30px; background: rgba(246, 242, 238, 0.03);">
+                <h3 style="margin-bottom: 20px; color: var(--neutral-0);">Caso de Referencia</h3>
+                <div class="grid-2" style="gap: 16px;">
+                  <div>
+                    <p style="font-size: 1rem; margin-bottom: 8px; color: rgba(246, 242, 238, 0.8);">Activos bajo gestión</p>
+                    <p style="font-weight: 700; color: var(--neutral-0); margin: 0;">= $3,000,000</p>
+                  </div>
+                  <div>
+                    <p style="font-size: 1rem; margin-bottom: 8px; color: rgba(246, 242, 238, 0.8);">Rendimiento (hipotético)</p>
+                    <p style="font-weight: 700; color: var(--neutral-0); margin: 0;">= 42%</p>
+                  </div>
+                  <div>
+                    <p style="font-size: 1rem; margin-bottom: 8px; color: rgba(246, 242, 238, 0.8);">Comisión de desempeño</p>
+                    <p style="font-weight: 700; color: var(--neutral-0); margin: 0;">= 25%</p>
+                  </div>
+                  <div>
+                    <p style="font-size: 1rem; margin-bottom: 8px; color: rgba(246, 242, 238, 0.8);">Participación del socio</p>
+                    <p style="font-weight: 700; color: var(--neutral-0); margin: 0;">= 30%</p>
+                  </div>
+                </div>
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(246,242,238,0.18);">
+                  <p style="font-weight: 700; color: #ffd98a; margin-bottom: 8px;">Ingresos del socio = $94,500</p>
+                </div>
+              </div>
+              <div class="accent-card" style="padding: 18px 22px; text-align: center;">
+                <p style="margin: 0; font-weight: 600; color: #f0c35a;">Rendimiento y AUM impulsan un crecimiento exponencial para el socio.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 13: Implementación -->
+        <section class="slide theme-light" id="slide-13" data-title="Implementación">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">13 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Siguientes Pasos</div>
+              <h2 class="slide-title">
+                Implementación
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <h3 class="implementation-lead" style=" font-weight: 600; text-align: center; color: var(--accent-700); margin: 0;">
+                Comenzar pequeño. Validar desempeño. Escalar con confianza.
+              </h3>
+
+              <div class="timeline" style="gap: 32px; grid-template-columns: repeat(3, minmax(0, 1fr));">
+                <article class="panel" style="padding: 42px; position: relative; text-align: center;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 50%; transform: translateX(-50%); width: 42px; height: 42px; ">1</span>
+                  <i data-lucide="beaker" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Piloto</h3>
+                  <p style="font-size: 1.15rem;">Asignación inicial.</p>
+                </article>
+                <article class="panel" style="padding: 42px; position: relative; text-align: center;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 50%; transform: translateX(-50%); width: 42px; height: 42px; ">2</span>
+                  <i data-lucide="scan-search" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Observar</h3>
+                  <p style="font-size: 1.15rem;">Periodo de evaluación de 60-90 días.</p>
+                </article>
+                <article class="panel" style="padding: 42px; position: relative; text-align: center;">
+                  <span class="timeline-badge" style="position: absolute; top: -21px; left: 50%; transform: translateX(-50%); width: 42px; height: 42px; ">3</span>
+                  <i data-lucide="move-up-right" class="step-icon"></i>
+                  <h3 style=" margin-top: 12px; margin-bottom: 16px;">Escalar</h3>
+                  <p style="font-size: 1.15rem;">Expandir en base a resultados validados.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 14: Soporte Continuo -->
+        <section class="slide theme-amber" id="slide-14" data-title="Soporte Continuo">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">14 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Soporte</div>
+              <h2 class="slide-title">
+                Soporte Continuo
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <p style=" font-weight: 600; color: var(--neutral-700); margin: 0;">
+                Gain proporciona:
+              </p>
+
+              <div class="grid-2" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; display: flex; align-items: center; gap: 24px;">
+                  <i data-lucide="file-text"></i>
+                  <div>
+                    <span style=" font-weight: 600;">Materiales para clientes</span>
+                    <p style="margin-top: 8px;">Activos de soporte comercial y componentes listos para conversión.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; display: flex; align-items: center; gap: 24px;">
+                  <i data-lucide="shield-check"></i>
+                  <div>
+                    <span style=" font-weight: 600;">Documentación de cumplimiento</span>
+                    <p style="margin-top: 8px;">Documentación clara legal, operativa y de riesgo para incorporación.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; display: flex; align-items: center; gap: 24px;">
+                  <i data-lucide="phone-call"></i>
+                  <div>
+                    <span style=" font-weight: 600;">Soporte de ventas</span>
+                    <p style="margin-top: 8px;">Soporte en llamadas para objeciones y cierre comercial.</p>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; display: flex; align-items: center; gap: 24px;">
+                  <i data-lucide="bar-chart-2"></i>
+                  <div>
+                    <span style=" font-weight: 600;">Reportes continuos de desempeño</span>
+                    <p style="margin-top: 8px;">Actualizaciones transparentes y consistentes con desempeño validado.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 15: Resumen -->
+        <section class="slide theme-dark" id="slide-15" data-title="Resumen">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">15 / 16</span>
+            </div>
+            <div class="slide-content-header">
+              <div class="eyebrow">Resumen</div>
+              <h2 class="slide-title">
+                Resumen
+              </h2>
+            </div>
+
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px;">
+              <div class="grid-3" style="gap: 32px;">
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.03);">
+                  <i data-lucide="user-check"></i>
+                  <p style=" margin: 0; color: var(--neutral-0);">El cliente mantiene control total del capital.</p>
+                </article>
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.03);">
+                  <i data-lucide="cpu"></i>
+                  <p style=" margin: 0; color: var(--neutral-0);">Gain ejecuta de forma sistemática y disciplinada.</p>
+                </article>
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.03);">
+                  <i data-lucide="trending-up"></i>
+                  <p style=" margin: 0; color: var(--neutral-0);">El socio accede a ingresos escalables basados en desempeño.</p>
+                </article>
+              </div>
+
+              <div class="accent-card" style="padding: 32px; text-align: center;  font-weight: 700; color: #ffd98a;">
+                Incentivos alineados. Estructura transparente. Crecimiento escalable impulsado por desempeño.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 16: Contacto -->
+        <section class="slide theme-dark" id="slide-16" data-title="Contacto">
+          <div class="slide-grid">
+            <div class="slide-header">
+              <img src="../../logo/main_logo.png" alt="Gain" class="slide-logo logo-light" />
+              <img src="../../logo/white_logo.png" alt="Gain" class="slide-logo logo-dark" />
+              <span class="slide-index">16 / 16</span>
+            </div>
+            
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 64px;">
+              <div>
+                <h2 style="margin: 0 0 16px; font-family: var(--font-display); font-size: clamp(4rem, 6vw, 6rem); line-height: 1; letter-spacing: -0.04em;">
+                  Gain
+                </h2>
+                <p style="margin: 0;  color: #ffd98a; font-weight: 600;">
+                  Wealth, Powered by Code
+                </p>
+              </div>
+
+              <div class="contact-grid" style="max-width: 960px;">
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.05); border: 1px solid rgba(246, 242, 238, 0.1);">
+                  <h3 style=" margin-bottom: 8px; color: var(--neutral-0);">Robert P. McDonell</h3>
+                  <p style=" color: rgba(246, 242, 238, 0.7); margin-bottom: 24px;">Fundador y CEO, Gain Inc.</p>
+                  
+                  <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <i data-lucide="mail"></i>
+                      <a href="mailto:robert@gain.inc" style="font-size: 1.15rem; color: var(--neutral-0); text-decoration: none;">robert@gain.inc</a>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <i data-lucide="calendar"></i>
+                      <a href="https://calendly.com/robert-mcdonell" target="_blank" style="font-size: 1.15rem; color: var(--neutral-0); text-decoration: none;">calendly.com/robert-mcdonell</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="panel" style="padding: 42px; background: rgba(246, 242, 238, 0.03);">
+                  <h3 style="margin-bottom: 12px; color: var(--neutral-0);">Ruta de Alianza</h3>
+                  <ul class="simple-list" style="gap: 12px;">
+                    <li><i data-lucide="circle-check"></i><span>Comienza con una asignación piloto</span></li>
+                    <li><i data-lucide="circle-check"></i><span>Observar 60-90 días de resultados reales</span></li>
+                    <li><i data-lucide="circle-check"></i><span>Escalar en base al desempeño validado</span></li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+</main>
+    </div>
+
+    <script src="../shared/deck-runtime.js"></script>
+  </body>
+</html>
